@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Search } from 'lucide-react';
 import { states } from '../data/states';
@@ -10,7 +11,7 @@ function States() {
   const filteredStates = states.filter(state => 
     state.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
     state.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    state.famous.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    (state.famous && state.famous.toLowerCase().includes(searchQuery.toLowerCase())) ||
     state.tags?.some(tag => tag.toLowerCase().includes(searchQuery.toLowerCase()))
   );
 
@@ -43,74 +44,78 @@ function States() {
         </div>
 
         {/* States Section */}
-        <div className="mb-20">
-          <h2 className="text-3xl font-bold mb-8">States ({statesList.length})</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {statesList.map((state) => (
-              <Link
-                key={state.path}
-                to={`/states/${state.path}`}
-                className="group"
-              >
-                <div className="relative h-80 rounded-xl overflow-hidden">
-                  <img
-                    src={state.image}
-                    alt={state.name}
-                    className="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-110"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent" />
-                  <div className="absolute bottom-0 left-0 right-0 p-6">
-                    <h3 className="text-2xl font-bold mb-2">{state.name}</h3>
-                    <p className="text-gray-300">Famous for: {state.famous}</p>
-                    <div className="flex flex-wrap gap-2 mt-3">
-                      {state.tags?.slice(0, 3).map((tag, index) => (
-                        <span key={index} className="text-sm px-2 py-1 bg-violet-500/20 text-violet-300 rounded-full">
-                          {tag}
-                        </span>
-                      ))}
+        {statesList.length > 0 && (
+          <div className="mb-20">
+            <h2 className="text-3xl font-bold mb-8">States ({statesList.length})</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {statesList.map((state) => (
+                <Link
+                  key={state.path}
+                  to={`/states/${state.path}`}
+                  className="group"
+                >
+                  <div className="relative h-80 rounded-xl overflow-hidden">
+                    <img
+                      src={state.image}
+                      alt={state.name}
+                      className="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-110"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent" />
+                    <div className="absolute bottom-0 left-0 right-0 p-6">
+                      <h3 className="text-2xl font-bold mb-2">{state.name}</h3>
+                      {state.famous && <p className="text-gray-300">Famous for: {state.famous}</p>}
+                      <div className="flex flex-wrap gap-2 mt-3">
+                        {state.tags?.slice(0, 3).map((tag, index) => (
+                          <span key={index} className="text-sm px-2 py-1 bg-violet-500/20 text-violet-300 rounded-full">
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
                     </div>
+                    <div className="absolute inset-0 bg-violet-600/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   </div>
-                  <div className="absolute inset-0 bg-violet-600/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                </div>
-              </Link>
-            ))}
+                </Link>
+              ))}
+            </div>
           </div>
-        </div>
+        )}
 
         {/* Union Territories Section */}
-        <div>
-          <h2 className="text-3xl font-bold mb-8">Union Territories ({utList.length})</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {utList.map((ut) => (
-              <Link
-                key={ut.path}
-                to={`/states/${ut.path}`}
-                className="group"
-              >
-                <div className="relative h-80 rounded-xl overflow-hidden">
-                  <img
-                    src={ut.image}
-                    alt={ut.name}
-                    className="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-110"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent" />
-                  <div className="absolute bottom-0 left-0 right-0 p-6">
-                    <h3 className="text-2xl font-bold mb-2">{ut.name}</h3>
-                    <p className="text-gray-300">Famous for: {ut.famous}</p>
-                    <div className="flex flex-wrap gap-2 mt-3">
-                      {ut.tags?.slice(0, 3).map((tag, index) => (
-                        <span key={index} className="text-sm px-2 py-1 bg-violet-500/20 text-violet-300 rounded-full">
-                          {tag}
-                        </span>
-                      ))}
+        {utList.length > 0 && (
+          <div>
+            <h2 className="text-3xl font-bold mb-8">Union Territories ({utList.length})</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {utList.map((ut) => (
+                <Link
+                  key={ut.path}
+                  to={`/states/${ut.path}`}
+                  className="group"
+                >
+                  <div className="relative h-80 rounded-xl overflow-hidden">
+                    <img
+                      src={ut.image}
+                      alt={ut.name}
+                      className="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-110"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent" />
+                    <div className="absolute bottom-0 left-0 right-0 p-6">
+                      <h3 className="text-2xl font-bold mb-2">{ut.name}</h3>
+                      {ut.famous && <p className="text-gray-300">Famous for: {ut.famous}</p>}
+                      <div className="flex flex-wrap gap-2 mt-3">
+                        {ut.tags?.slice(0, 3).map((tag, index) => (
+                          <span key={index} className="text-sm px-2 py-1 bg-violet-500/20 text-violet-300 rounded-full">
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
                     </div>
+                    <div className="absolute inset-0 bg-violet-600/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   </div>
-                  <div className="absolute inset-0 bg-violet-600/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                </div>
-              </Link>
-            ))}
+                </Link>
+              ))}
+            </div>
           </div>
-        </div>
+        )}
 
         {/* No Results Message */}
         {filteredStates.length === 0 && (
