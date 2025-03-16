@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+
+import { useState } from 'react';
 import { MapPin, Utensils, Landmark, PartyPopper, Play, Plus, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import StateCard from '../components/StateCard';
@@ -104,7 +105,7 @@ function Home() {
         <AddStateModal
           isOpen={isAddStateModalOpen}
           onClose={() => setIsAddStateModalOpen(false)}
-          onAdd={(newState) => {
+          onAdd={() => {
             // Handle adding new state
             setIsAddStateModalOpen(false);
           }}
