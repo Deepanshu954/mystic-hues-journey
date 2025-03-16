@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
-import { X, Plus, Trash2 } from 'lucide-react';
+
+import { useState } from 'react';
+import { X } from 'lucide-react';
 
 interface Place {
   name: string;
@@ -50,60 +51,6 @@ const AddStateModal = ({ isOpen, onClose, onAdd }: AddStateModalProps) => {
     setFormData(prev => ({
       ...prev,
       tags
-    }));
-  };
-
-  const handleHistoryChange = (era: string, value: string) => {
-    setFormData((prev) => ({
-      ...prev,
-      history: {
-        ...prev.history,
-        [era]: value,
-      },
-    }));
-  };
-
-  const handlePlaceChange = (index: number, field: keyof Place, value: string) => {
-    setFormData((prev) => {
-      const newPlaces = [...prev.places];
-      newPlaces[index] = { ...newPlaces[index], [field]: value };
-      return { ...prev, places: newPlaces };
-    });
-  };
-
-  const handleCuisineChange = (index: number, field: keyof Cuisine, value: string) => {
-    setFormData((prev) => {
-      const newCuisine = [...prev.cuisine];
-      newCuisine[index] = { ...newCuisine[index], [field]: value };
-      return { ...prev, cuisine: newCuisine };
-    });
-  };
-
-  const addPlace = () => {
-    setFormData((prev) => ({
-      ...prev,
-      places: [...prev.places, { name: '', image: '', description: '' }],
-    }));
-  };
-
-  const removePlace = (index: number) => {
-    setFormData((prev) => ({
-      ...prev,
-      places: prev.places.filter((_, i) => i !== index),
-    }));
-  };
-
-  const addCuisine = () => {
-    setFormData((prev) => ({
-      ...prev,
-      cuisine: [...prev.cuisine, { name: '', description: '', image: '' }],
-    }));
-  };
-
-  const removeCuisine = (index: number) => {
-    setFormData((prev) => ({
-      ...prev,
-      cuisine: prev.cuisine.filter((_, i) => i !== index),
     }));
   };
 

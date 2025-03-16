@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { motion } from 'framer-motion';
 import PageTransition from '../components/PageTransition';
 import { foodData } from '../data/food';
