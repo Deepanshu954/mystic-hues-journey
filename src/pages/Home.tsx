@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { MapPin, Utensils, Landmark, PartyPopper, Play, Plus, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -105,8 +104,9 @@ function Home() {
         <AddStateModal
           isOpen={isAddStateModalOpen}
           onClose={() => setIsAddStateModalOpen(false)}
-          onAdd={() => {
+          onSubmit={(data) => {
             // Handle adding new state
+            console.log('New state data:', data);
             setIsAddStateModalOpen(false);
           }}
         />
