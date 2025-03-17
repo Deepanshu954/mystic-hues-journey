@@ -13,6 +13,7 @@ const NeoBackground = () => {
 
     // Set canvas dimensions
     const setCanvasDimensions = () => {
+      if (!canvas) return;
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
     };
@@ -31,8 +32,9 @@ const NeoBackground = () => {
       color: string;
 
       constructor() {
-        this.x = Math.random() * canvas.width;
-        this.y = Math.random() * canvas.height;
+        // Add null check for canvas
+        this.x = Math.random() * (canvas?.width || window.innerWidth);
+        this.y = Math.random() * (canvas?.height || window.innerHeight);
         this.size = Math.random() * 2 + 0.5;
         this.speedX = (Math.random() - 0.5) * 0.3;
         this.speedY = (Math.random() - 0.5) * 0.3;
@@ -51,6 +53,8 @@ const NeoBackground = () => {
         this.y += this.speedY;
 
         // Wrap around canvas edges
+        if (!canvas) return;
+        
         if (this.x > canvas.width) this.x = 0;
         else if (this.x < 0) this.x = canvas.width;
         if (this.y > canvas.height) this.y = 0;
@@ -103,7 +107,7 @@ const NeoBackground = () => {
 
     // Animation loop
     const animate = () => {
-      if (!ctx) return;
+      if (!ctx || !canvas) return;
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       // Draw gentle gradients
