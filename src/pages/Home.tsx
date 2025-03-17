@@ -19,8 +19,17 @@ function Home() {
       <div>
         {/* Hero Section with Video Background */}
         <div className="relative h-screen">
-          <div className="absolute inset-0 bg-cover bg-center bg-no-repeat" 
-               style={{ backgroundImage: "url('https://source.unsplash.com/random/1920x1080/?india-culture')" }}>
+          <div className="absolute inset-0 overflow-hidden">
+            <video
+              autoPlay
+              muted
+              loop
+              playsInline
+              className="absolute min-w-full min-h-full object-cover"
+            >
+              <source src="https://player.vimeo.com/external/370331493.sd.mp4?s=e90dcaba73c19e0e36f03406b47bbd6992dd6c1c&profile_id=139&oauth2_token_id=57447761" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
             <div className="absolute inset-0 bg-black/60" />
           </div>
           <div className="absolute inset-0 flex items-center justify-center text-center">
@@ -96,6 +105,7 @@ function Home() {
         <VideoModal
           isOpen={isVideoModalOpen}
           onClose={() => setIsVideoModalOpen(false)}
+          videoId="35npVaFGHMY"
         />
       </div>
     </PageTransition>
