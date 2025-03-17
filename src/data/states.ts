@@ -7,6 +7,7 @@ export interface State {
   thumbnail: string;
   famous: string;
   isUT: boolean;
+  capital: string; // Adding the missing capital property
   tags: string[];
   places: {
     name: string;
