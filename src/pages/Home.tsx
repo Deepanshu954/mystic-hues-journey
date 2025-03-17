@@ -1,9 +1,9 @@
+
 import { useState } from 'react';
-import { MapPin, Utensils, Landmark, PartyPopper, Play, Plus, ArrowRight } from 'lucide-react';
+import { MapPin, Utensils, Landmark, PartyPopper, Play, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import StateCard from '../components/StateCard';
 import FeaturedSection from '../components/FeaturedSection';
-import AddStateModal from '../components/AddStateModal';
 import VideoModal from '../components/VideoModal';
 import PageTransition from '../components/PageTransition';
 import { states } from '../data/states';
@@ -12,7 +12,6 @@ import { states } from '../data/states';
 const featuredStates = states.slice(0, 3);
 
 function Home() {
-  const [isAddStateModalOpen, setIsAddStateModalOpen] = useState(false);
   const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
 
   return (
@@ -68,14 +67,7 @@ function Home() {
               title="Discover India's Treasures" 
               subtitle="Explore the diverse landscapes and rich cultural heritage of featured Indian States"
             >
-              <div className="flex justify-end mb-8 gap-4">
-                <button
-                  onClick={() => setIsAddStateModalOpen(true)}
-                  className="flex items-center gap-2 px-4 py-2 bg-violet-600/20 hover:bg-violet-600/30 rounded-lg text-violet-400 border border-violet-500/30 transition-colors"
-                >
-                  <Plus className="w-4 h-4" />
-                  Add State
-                </button>
+              <div className="flex justify-end mb-8">
                 <Link
                   to="/states"
                   className="flex items-center gap-2 px-6 py-2 bg-violet-600 hover:bg-violet-700 rounded-lg text-white transition-colors"
@@ -99,17 +91,6 @@ function Home() {
             </FeaturedSection>
           </div>
         </div>
-
-        {/* Add State Modal */}
-        <AddStateModal
-          isOpen={isAddStateModalOpen}
-          onClose={() => setIsAddStateModalOpen(false)}
-          onSubmit={(data) => {
-            // Handle adding new state
-            console.log('New state data:', data);
-            setIsAddStateModalOpen(false);
-          }}
-        />
 
         {/* Video Modal */}
         <VideoModal
