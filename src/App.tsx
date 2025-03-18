@@ -3,6 +3,7 @@ import { Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 import Home from './pages/Home';
 import Culture from './pages/Culture';
+import CultureDetail from './pages/CultureDetail';
 import States from './pages/States';
 import StateDetails from './pages/StateDetails';
 import Login from './pages/Login';
@@ -23,6 +24,7 @@ function App() {
         <Routes location={location} key={location.pathname}>
           <Route path="/" element={<PageTransition><Home /></PageTransition>} />
           <Route path="/culture" element={<PageTransition><Culture /></PageTransition>} />
+          <Route path="/culture/:id/:state" element={<PageTransition><CultureDetail /></PageTransition>} />
           <Route path="/states" element={<PageTransition><States /></PageTransition>} />
           <Route path="/states/:state" element={<PageTransition><StateDetails /></PageTransition>} />
           <Route path="/login" element={<PageTransition><Login /></PageTransition>} />
