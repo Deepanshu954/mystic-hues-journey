@@ -5,10 +5,12 @@ import { ReactNode } from 'react';
 interface PageHeaderProps {
   title: string;
   subtitle?: string;
+  description?: string;
+  image?: string;
   children?: ReactNode;
 }
 
-const PageHeader = ({ title, subtitle, children }: PageHeaderProps) => {
+const PageHeader = ({ title, subtitle, description, image, children }: PageHeaderProps) => {
   const titleWords = title.split(' ');
   
   return (
@@ -41,6 +43,17 @@ const PageHeader = ({ title, subtitle, children }: PageHeaderProps) => {
             transition={{ delay: 0.3, duration: 0.5 }}
           >
             {subtitle}
+          </motion.p>
+        )}
+
+        {description && (
+          <motion.p 
+            className="text-lg text-neo-gray-400 max-w-3xl mx-auto mt-2"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.4, duration: 0.5 }}
+          >
+            {description}
           </motion.p>
         )}
       </div>

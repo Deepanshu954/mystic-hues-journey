@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { ChevronLeft, Image } from 'lucide-react';
 import PageHeader from '../components/PageHeader';
-import { cultures } from '../data/culture';
+import { culturalData, CulturalItem } from '../data/culture';
 import { states } from '../data/states';
 import PageTransition from '../components/PageTransition';
 import { motion } from 'framer-motion';
@@ -13,14 +13,16 @@ const CultureDetail = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [relatedStates, setRelatedStates] = useState<typeof states>([]);
   
-  const culture = cultures.find((c) => c.id === id);
+  // Find culture by ID from culturalData array
+  const cultureId = id ? parseInt(id) : -1;
+  const culture = culturalData.find((c: CulturalItem) => c.id === cultureId);
   const stateData = states.find((s) => s.path === state);
 
   useEffect(() => {
-    // Find related states (states with the same culture)
-    if (culture) {
+    // Find related states (states with the same culture elements)
+    if (culture && stateData) {
       const related = states.filter(
-        (s) => s.cultures.includes(culture.id) && s.path !== state
+        (s) => s.path !== state && s.culture.art.toLowerCase().includes(culture.title.toLowerCase())
       ).slice(0, 3);
       setRelatedStates(related);
     }
@@ -31,7 +33,7 @@ const CultureDetail = () => {
     }, 1000);
     
     return () => clearTimeout(timer);
-  }, [culture, state]);
+  }, [culture, state, stateData]);
 
   if (!culture || !stateData) {
     return (
@@ -48,9 +50,8 @@ const CultureDetail = () => {
     <PageTransition>
       <div>
         <PageHeader
-          title={`${culture.name} - ${stateData.name}`}
-          description={`Explore the rich ${culture.name} tradition in ${stateData.name}`}
-          image={culture.image}
+          title={`${culture.title} - ${stateData.name}`}
+          subtitle={`Explore the rich ${culture.title} tradition in ${stateData.name}`}
         />
 
         <div className="max-w-7xl mx-auto px-4 py-12">
@@ -74,13 +75,13 @@ const CultureDetail = () => {
               <div className="lg:col-span-2 space-y-8">
                 <div className="neo-panel p-8">
                   <h2 className="text-3xl font-bold mb-6 neo-gradient-text">
-                    {culture.name} in {stateData.name}
+                    {culture.title} in {stateData.name}
                   </h2>
                   
                   <div className="relative aspect-video overflow-hidden rounded-xl mb-8">
                     <motion.img
-                      src={culture.detailImage || culture.image}
-                      alt={culture.name}
+                      src={culture.image}
+                      alt={culture.title}
                       className="w-full h-full object-cover"
                       initial={{ scale: 1.1, filter: 'blur(10px)' }}
                       animate={{ scale: 1, filter: 'blur(0px)' }}
@@ -90,14 +91,14 @@ const CultureDetail = () => {
                   </div>
                   
                   <p className="text-gray-300 leading-relaxed mb-6">
-                    {culture.description}
+                    {culture.fullDescription || culture.description}
                   </p>
 
                   <h3 className="text-xl font-semibold mb-4 text-violet-300">
                     Historical Significance
                   </h3>
                   <p className="text-gray-300 leading-relaxed mb-6">
-                    {culture.history || `The ${culture.name} has deep historical roots in ${stateData.name}, 
+                    {`The ${culture.title} has deep historical roots in ${stateData.name}, 
                     dating back several centuries. It evolved from ancient traditions and has been 
                     passed down through generations, becoming an integral part of the cultural fabric.`}
                   </p>
@@ -106,9 +107,10 @@ const CultureDetail = () => {
                     Key Elements
                   </h3>
                   <ul className="list-disc list-inside text-gray-300 mb-6 space-y-2">
-                    {culture.elements?.map((element, index) => (
+                    {culture.tags && culture.tags.map((element: string, index: number) => (
                       <li key={index} className="ml-4">{element}</li>
-                    )) || (
+                    ))}
+                    {!culture.tags && (
                       <>
                         <li className="ml-4">Traditional performances by skilled artists</li>
                         <li className="ml-4">Special costumes and accessories</li>
@@ -131,8 +133,8 @@ const CultureDetail = () => {
                     {[1, 2, 3, 4].map((_, index) => (
                       <div key={index} className="aspect-square overflow-hidden rounded-lg relative group">
                         <motion.img
-                          src={`https://source.unsplash.com/random/300x300?${culture.name.toLowerCase()},culture,india,${index}`}
-                          alt={`${culture.name} gallery ${index + 1}`}
+                          src={`https://source.unsplash.com/random/300x300?${culture.title.toLowerCase()},culture,india,${index}`}
+                          alt={`${culture.title} gallery ${index + 1}`}
                           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                           initial={{ opacity: 0 }}
                           animate={{ opacity: 1 }}
@@ -154,7 +156,7 @@ const CultureDetail = () => {
                       {relatedStates.map((relatedState) => (
                         <Link
                           key={relatedState.path}
-                          to={`/culture/${culture.id}/${relatedState.path}`}
+                          to={`/culture/${cultureId}/${relatedState.path}`}
                           className="flex items-center p-3 rounded-lg bg-gray-800/50 hover:bg-gray-700/50 transition-colors"
                         >
                           <img
@@ -164,7 +166,7 @@ const CultureDetail = () => {
                           />
                           <div>
                             <h4 className="font-medium text-white">{relatedState.name}</h4>
-                            <p className="text-sm text-gray-400">Explore {culture.name} in {relatedState.name}</p>
+                            <p className="text-sm text-gray-400">Explore {culture.title} in {relatedState.name}</p>
                           </div>
                         </Link>
                       ))}
