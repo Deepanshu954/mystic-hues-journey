@@ -7,35 +7,65 @@ interface VideoModalProps {
   isOpen: boolean;
   onClose: () => void;
   videoId?: string;
+  startAt?: number;
+  isBackground?: boolean;
 }
 
-const VideoModal = ({ isOpen, onClose, videoId = '35npVaFGHMY' }: VideoModalProps) => {
+const VideoModal = ({ 
+  isOpen, 
+  onClose, 
+  videoId = 'm8qf5bSmlQQ',
+  startAt = 0,
+  isBackground = false
+}: VideoModalProps) => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    if (isOpen) {
+    if (isOpen && !isBackground) {
       document.body.style.overflow = 'hidden';
       
       // Reset loading state when modal opens
       setIsLoading(true);
-    } else {
+    } else if (!isBackground) {
       document.body.style.overflow = '';
     }
 
     const handleEscape = (e: KeyboardEvent) => {
-      if (e.key === 'Escape' && isOpen) onClose();
+      if (e.key === 'Escape' && isOpen && !isBackground) onClose();
     };
 
-    document.addEventListener('keydown', handleEscape);
+    if (!isBackground) {
+      document.addEventListener('keydown', handleEscape);
+    }
+    
     return () => {
-      document.removeEventListener('keydown', handleEscape);
-      document.body.style.overflow = '';
+      if (!isBackground) {
+        document.removeEventListener('keydown', handleEscape);
+        document.body.style.overflow = '';
+      }
     };
-  }, [isOpen, onClose]);
+  }, [isOpen, onClose, isBackground]);
 
   const handleIframeLoad = () => {
     setIsLoading(false);
   };
+
+  // Render background video differently
+  if (isBackground) {
+    return (
+      <div className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none">
+        <div className="absolute inset-0 bg-black/60 z-10" />
+        <iframe
+          className="absolute w-[300%] h-[300%] top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+          src={`https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&controls=0&showinfo=0&rel=0&loop=1&playlist=${videoId}&start=${startAt}&enablejsapi=1`}
+          title="Background Video"
+          frameBorder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+        />
+      </div>
+    );
+  }
 
   return (
     <AnimatePresence>
@@ -76,8 +106,8 @@ const VideoModal = ({ isOpen, onClose, videoId = '35npVaFGHMY' }: VideoModalProp
               
               <iframe
                 className="absolute inset-0 w-full h-full"
-                src={`https://www.youtube.com/embed/${videoId}?autoplay=0&rel=0`}
-                title="Incredible India"
+                src={`https://www.youtube.com/embed/${videoId}?autoplay=0&rel=0&start=${startAt}`}
+                title="YouTube Video"
                 frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen

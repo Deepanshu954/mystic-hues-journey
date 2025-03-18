@@ -30,7 +30,7 @@ const AbstractBackground = () => {
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           filter: 'brightness(0.5) contrast(1.2)',
-          opacity: 0.8
+          opacity: 0.4 // Reduced opacity to make video more visible
         }}
       />
 

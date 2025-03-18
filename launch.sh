@@ -6,11 +6,12 @@ GREEN='\033[0;32m'
 CYAN='\033[0;36m'
 YELLOW='\033[1;33m'
 RED='\033[0;31m'
+PURPLE='\033[0;35m'
 NC='\033[0m' # No Color
 
-echo -e "${CYAN}=======================================${NC}"
-echo -e "${CYAN}🕉️  Launching Mystic India Application${NC}"
-echo -e "${CYAN}=======================================${NC}"
+echo -e "${PURPLE}=======================================${NC}"
+echo -e "${PURPLE}🕉️  Launching Mystic India Application${NC}"
+echo -e "${PURPLE}=======================================${NC}"
 
 # Check if Node.js is installed
 if ! command -v node &> /dev/null; then
@@ -47,16 +48,35 @@ if ! grep -q "\"build:dev\"" package.json; then
     echo -e "${GREEN}✅ build:dev script added to package.json${NC}"
 fi
 
-echo -e "${YELLOW}📦 Installing dependencies...${NC}"
-npm install
-
-echo -e "${GREEN}✅ Dependencies installed successfully!${NC}"
+# Check for installed dependencies
+if [ ! -d "node_modules" ]; then
+    echo -e "${YELLOW}📦 Installing dependencies (this may take a while)...${NC}"
+    npm install
+    
+    if [ $? -ne 0 ]; then
+        echo -e "${RED}❌ Failed to install dependencies. Please check your internet connection and try again.${NC}"
+        exit 1
+    fi
+else
+    echo -e "${GREEN}✅ Dependencies already installed${NC}"
+    
+    # Optional: Check if any dependencies need updating
+    echo -e "${YELLOW}🔄 Checking for dependency updates...${NC}"
+    npm outdated --depth=0
+fi
 
 # Make script executable
 chmod +x launch.sh
 
-echo -e "${YELLOW}🚀 Starting the application...${NC}"
-echo -e "${CYAN}The application will be available at: ${GREEN}http://localhost:8080${NC}"
+echo -e "\n${CYAN}=== Mystic India Application Information ===${NC}"
+echo -e "${GREEN}• Theme:${NC} Light/Dark mode toggle available in the top navigation"
+echo -e "${GREEN}• Pages:${NC} Home, States, Culture, Festivals, Food"
+echo -e "${GREEN}• Features:${NC} Interactive UI, Background Video, Responsive Design"
+echo -e "${YELLOW}• Tip:${NC} For best experience, view in a modern browser with good internet connection\n"
 
-# Start the development server
+echo -e "${YELLOW}🚀 Starting the application...${NC}"
+echo -e "${CYAN}The application will be available at: ${GREEN}http://localhost:5173${NC}\n"
+
+# Start the development server with improved output
 npm run dev
+

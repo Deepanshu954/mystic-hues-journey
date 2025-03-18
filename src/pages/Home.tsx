@@ -1,6 +1,5 @@
-
 import { useState } from 'react';
-import { MapPin, Utensils, Landmark, PartyPopper, Play, ArrowRight, Globe, BookOpen, Image, Star } from 'lucide-react';
+import { MapPin, Utensils, Landmark, PartyPopper, ArrowRight, Globe, BookOpen, Image, Star } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import StateCard from '../components/StateCard';
@@ -16,42 +15,32 @@ import { states } from '../data/states';
 // Show only 3 featured states on the home page
 const featuredStates = states.slice(0, 3);
 
+// Group states by category for rendering
+const categorizedStates = {
+  north: states.filter(state => state.tags.includes('North India')),
+  south: states.filter(state => state.tags.includes('South India')),
+  east: states.filter(state => state.tags.includes('East India')),
+  west: states.filter(state => state.tags.includes('West India')),
+  central: states.filter(state => state.tags.includes('Central India')),
+  northeast: states.filter(state => state.tags.includes('Northeast India')),
+};
+
 function Home() {
-  const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
-
-  const statsByRegion = {
-    north: states.filter(state => state.region === 'North'),
-    south: states.filter(state => state.region === 'South'),
-    east: states.filter(state => state.region === 'East'),
-    west: states.filter(state => state.region === 'West'),
-    central: states.filter(state => state.region === 'Central'),
-    northeast: states.filter(state => state.region === 'Northeast'),
-  };
-
   return (
     <PageTransition>
       <div>
-        {/* Hero Section with Background Image */}
+        {/* Hero Section with Background Video */}
         <div className="relative h-screen">
-          <div className="absolute inset-0 overflow-hidden">
-            <div 
-              className="absolute min-w-full min-h-full object-cover"
-              style={{
-                backgroundImage: 'url(/lovable-uploads/609cfc24-6e27-491e-a767-478433efa961.png)',
-                backgroundSize: 'cover',
-                backgroundPosition: 'center',
-                animation: 'pulse 15s ease-in-out infinite'
-              }}
-            >
-              {/* Dynamic overlay gradient */}
-              <div className="absolute inset-0 bg-gradient-to-r from-violet-900/30 to-blue-900/30" />
-            </div>
-            <div className="absolute inset-0 bg-black/50" />
-            
-            {/* Particle effects overlay */}
-            <NeoBackground />
-          </div>
-          <div className="absolute inset-0 flex items-center justify-center text-center">
+          {/* Background Video */}
+          <VideoModal 
+            isOpen={true} 
+            onClose={() => {}}
+            videoId="m8qf5bSmlQQ" 
+            startAt={20}
+            isBackground={true}
+          />
+          
+          <div className="absolute inset-0 flex items-center justify-center text-center z-20">
             <div className="max-w-4xl px-4">
               <motion.h1 
                 className="text-5xl md:text-7xl font-bold mb-6 text-white"
@@ -69,24 +58,12 @@ function Home() {
               >
                 Land of Diversity, Culture, and Timeless Traditions
               </motion.p>
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.4 }}
-              >
-                <button 
-                  onClick={() => setIsVideoModalOpen(true)}
-                  className="bg-violet-600 hover:bg-violet-700 text-white px-8 py-4 rounded-full font-semibold flex items-center mx-auto gap-3 transition-colors duration-300 shadow-neo-button hover:shadow-neo"
-                >
-                  Watch Video <Play className="w-5 h-5" />
-                </button>
-              </motion.div>
             </div>
           </div>
           
           {/* Scroll down indicator */}
           <motion.div 
-            className="absolute bottom-10 left-1/2 transform -translate-x-1/2 text-white flex flex-col items-center"
+            className="absolute bottom-10 left-1/2 transform -translate-x-1/2 text-white flex flex-col items-center z-20"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 1, duration: 1 }}
@@ -236,12 +213,12 @@ function Home() {
             
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {[
-                { name: "North India", states: statsByRegion.north, image: "https://images.unsplash.com/photo-1548013146-72479768bada" },
-                { name: "South India", states: statsByRegion.south, image: "https://images.unsplash.com/photo-1602153508753-4de4f0be3093" },
-                { name: "East India", states: statsByRegion.east, image: "https://images.unsplash.com/photo-1558431382-27e303142255" },
-                { name: "West India", states: statsByRegion.west, image: "https://images.unsplash.com/photo-1586183189334-1abd0f9c5de3" },
-                { name: "Central India", states: statsByRegion.central, image: "https://images.unsplash.com/photo-1524492412937-b28074a5d7da" },
-                { name: "Northeast India", states: statsByRegion.northeast, image: "https://images.unsplash.com/photo-1605462863863-10d9e47e15ee" },
+                { name: "North India", states: categorizedStates.north, image: "https://images.unsplash.com/photo-1548013146-72479768bada" },
+                { name: "South India", states: categorizedStates.south, image: "https://images.unsplash.com/photo-1602153508753-4de4f0be3093" },
+                { name: "East India", states: categorizedStates.east, image: "https://images.unsplash.com/photo-1558431382-27e303142255" },
+                { name: "West India", states: categorizedStates.west, image: "https://images.unsplash.com/photo-1586183189334-1abd0f9c5de3" },
+                { name: "Central India", states: categorizedStates.central, image: "https://images.unsplash.com/photo-1524492412937-b28074a5d7da" },
+                { name: "Northeast India", states: categorizedStates.northeast, image: "https://images.unsplash.com/photo-1605462863863-10d9e47e15ee" },
               ].map((region, index) => (
                 <motion.div
                   key={index}
@@ -316,13 +293,6 @@ function Home() {
 
         {/* Newsletter */}
         <Newsletter />
-
-        {/* Video Modal */}
-        <VideoModal
-          isOpen={isVideoModalOpen}
-          onClose={() => setIsVideoModalOpen(false)}
-          videoId="35npVaFGHMY"
-        />
       </div>
     </PageTransition>
   );
