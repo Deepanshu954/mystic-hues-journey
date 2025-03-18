@@ -56,6 +56,21 @@ const PageHeader = ({ title, subtitle, description, image, children }: PageHeade
             {description}
           </motion.p>
         )}
+        
+        {image && (
+          <motion.div
+            className="mt-6 max-w-2xl mx-auto"
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.5, duration: 0.5 }}
+          >
+            <img 
+              src={image} 
+              alt={title} 
+              className="w-full h-auto rounded-xl shadow-neo-card object-cover"
+            />
+          </motion.div>
+        )}
       </div>
       
       {/* Subtle animated decorative elements */}
