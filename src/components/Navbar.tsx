@@ -5,8 +5,8 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { states } from '../data/states';
 import { motion } from 'framer-motion';
 
+// Updated nav items without the Home option
 const navItems = [
-  { path: '/', label: 'Home' },
   { path: '/states', label: 'States' },
   { path: '/culture', label: 'Culture' },
   { path: '/festivals', label: 'Festivals' },
@@ -42,15 +42,20 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className={`fixed w-full z-50 transition-all duration-300 ${
-        isScrolled || location.pathname !== '/'
-          ? 'bg-gray-900/95 backdrop-blur-sm border-b border-gray-800' 
-          : 'bg-transparent'
-      }`}>
+      <motion.nav 
+        className={`fixed w-full z-50 transition-all duration-300 ${
+          isScrolled || location.pathname !== '/'
+            ? 'bg-gray-900/95 backdrop-blur-sm border-b border-gray-800' 
+            : 'bg-transparent'
+        }`}
+        initial={{ y: -100, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+      >
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex justify-between items-center h-20">
             <Link to="/" className="group">
-              <h1 className="text-3xl font-bold tracking-wider text-white group-hover:text-violet-400 transition-colors">
+              <h1 className="text-3xl font-bold tracking-wider text-white group-hover:text-violet-400 transition-colors duration-300">
                 MYSTIC INDIA
               </h1>
             </Link>
@@ -121,7 +126,7 @@ const Navbar = () => {
             ))}
           </div>
         </motion.div>
-      </nav>
+      </motion.nav>
 
       {/* Search Modal */}
       {isSearchOpen && (

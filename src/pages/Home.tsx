@@ -6,6 +6,7 @@ import StateCard from '../components/StateCard';
 import FeaturedSection from '../components/FeaturedSection';
 import VideoModal from '../components/VideoModal';
 import PageTransition from '../components/PageTransition';
+import NeoBackground from '../components/NeoBackground';
 import { states } from '../data/states';
 
 // Show only 3 featured states on the home page
@@ -17,20 +18,25 @@ function Home() {
   return (
     <PageTransition>
       <div>
-        {/* Hero Section with Video Background */}
+        {/* Hero Section with Background Image */}
         <div className="relative h-screen">
           <div className="absolute inset-0 overflow-hidden">
-            <video
-              autoPlay
-              muted
-              loop
-              playsInline
+            <div 
               className="absolute min-w-full min-h-full object-cover"
+              style={{
+                backgroundImage: 'url(/lovable-uploads/609cfc24-6e27-491e-a767-478433efa961.png)',
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                animation: 'pulse 15s ease-in-out infinite'
+              }}
             >
-              <source src="https://player.vimeo.com/external/370331493.sd.mp4?s=e90dcaba73c19e0e36f03406b47bbd6992dd6c1c&profile_id=139&oauth2_token_id=57447761" type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
-            <div className="absolute inset-0 bg-black/60" />
+              {/* Dynamic overlay gradient */}
+              <div className="absolute inset-0 bg-gradient-to-r from-violet-900/30 to-blue-900/30" />
+            </div>
+            <div className="absolute inset-0 bg-black/50" />
+            
+            {/* Particle effects overlay */}
+            <NeoBackground />
           </div>
           <div className="absolute inset-0 flex items-center justify-center text-center">
             <div className="max-w-4xl px-4">
@@ -38,7 +44,7 @@ function Home() {
               <p className="text-xl md:text-2xl text-white mb-8 font-light tracking-wide">Land of Diversity, Culture, and Timeless Traditions</p>
               <button 
                 onClick={() => setIsVideoModalOpen(true)}
-                className="bg-violet-600 hover:bg-violet-700 text-white px-8 py-4 rounded-full font-semibold flex items-center mx-auto gap-3 transition-colors duration-300"
+                className="bg-violet-600 hover:bg-violet-700 text-white px-8 py-4 rounded-full font-semibold flex items-center mx-auto gap-3 transition-colors duration-300 shadow-neo-button hover:shadow-neo"
               >
                 Watch Video <Play className="w-5 h-5" />
               </button>
@@ -49,7 +55,7 @@ function Home() {
         {/* Experience India Section */}
         <div className="bg-gray-800 py-20">
           <div className="max-w-7xl mx-auto px-4">
-            <h2 className="text-4xl md:text-5xl font-bold text-center mb-16">Experience India</h2>
+            <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 neo-gradient-text">Experience India</h2>
             <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
               {[
                 { icon: MapPin, title: 'States & Territories', count: '28 States & 8 UTs' },
@@ -79,7 +85,7 @@ function Home() {
               <div className="flex justify-end mb-8">
                 <Link
                   to="/states"
-                  className="flex items-center gap-2 px-6 py-2 bg-violet-600 hover:bg-violet-700 rounded-lg text-white transition-colors"
+                  className="flex items-center gap-2 px-6 py-2 bg-violet-600 hover:bg-violet-700 rounded-lg text-white transition-colors shadow-neo-button hover:shadow-neo"
                 >
                   View All States
                   <ArrowRight className="w-4 h-4" />

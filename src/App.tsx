@@ -10,7 +10,7 @@ import Login from './pages/Login';
 import Food from './pages/Food';
 import Festivals from './pages/Festivals';
 import Navbar from './components/Navbar';
-import AbstractBackground from './components/AbstractBackground';
+import NeoBackground from './components/NeoBackground';
 import PageTransition from './components/PageTransition';
 
 function App() {
@@ -18,11 +18,11 @@ function App() {
 
   return (
     <div className="min-h-screen bg-gray-900 text-white relative overflow-hidden">
-      <AbstractBackground />
+      <NeoBackground />
       <Navbar />
       <AnimatePresence mode="wait">
         <Routes location={location} key={location.pathname}>
-          <Route path="/" element={<PageTransition><Home /></PageTransition>} />
+          <Route path="/" element={<Home />} />
           <Route path="/culture" element={<PageTransition><Culture /></PageTransition>} />
           <Route path="/culture/:id/:state" element={<PageTransition><CultureDetail /></PageTransition>} />
           <Route path="/states" element={<PageTransition><States /></PageTransition>} />
