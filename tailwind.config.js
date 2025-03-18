@@ -2,10 +2,11 @@
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
+  darkMode: 'class', // Enable dark mode with class
   theme: {
     extend: {
       colors: {
-        // Futuristic color palette
+        // Futuristic color palette - Dark mode
         'neo-black': '#09090b',
         'neo-dark': '#18181b',
         'neo-blue': '#0ea5e9',
@@ -23,7 +24,17 @@ export default {
           700: '#3f3f46',
           800: '#27272a',
           900: '#18181b',
-        }
+        },
+        // Light mode colors
+        'light': {
+          'bg': '#f9fafb',
+          'card': '#ffffff',
+          'primary': '#7c3aed',
+          'secondary': '#a78bfa',
+          'accent': '#d8b4fe',
+          'text': '#1f2937',
+          'muted': '#6b7280',
+        },
       },
       fontFamily: {
         'sans': ['Inter', 'ui-sans-serif', 'system-ui'],
@@ -98,6 +109,7 @@ export default {
         'neo': '0 0 20px rgba(139, 92, 246, 0.3)',
         'neo-button': '0 0 15px rgba(139, 92, 246, 0.5)',
         'neo-card': '0 5px 15px rgba(0, 0, 0, 0.1), 0 0 5px rgba(139, 92, 246, 0.2)',
+        'light-card': '0 4px 12px rgba(0, 0, 0, 0.05)',
       },
     },
   },

@@ -12,27 +12,32 @@ import Festivals from './pages/Festivals';
 import Navbar from './components/Navbar';
 import NeoBackground from './components/NeoBackground';
 import PageTransition from './components/PageTransition';
+import { ThemeProvider } from './components/ThemeProvider';
+import Footer from './components/Footer';
 
 function App() {
   const location = useLocation();
 
   return (
-    <div className="min-h-screen bg-gray-900 text-white relative overflow-hidden">
-      <NeoBackground />
-      <Navbar />
-      <AnimatePresence mode="wait">
-        <Routes location={location} key={location.pathname}>
-          <Route path="/" element={<Home />} />
-          <Route path="/culture" element={<PageTransition><Culture /></PageTransition>} />
-          <Route path="/culture/:id/:state" element={<PageTransition><CultureDetail /></PageTransition>} />
-          <Route path="/states" element={<PageTransition><States /></PageTransition>} />
-          <Route path="/states/:state" element={<PageTransition><StateDetails /></PageTransition>} />
-          <Route path="/login" element={<PageTransition><Login /></PageTransition>} />
-          <Route path="/food" element={<PageTransition><Food /></PageTransition>} />
-          <Route path="/festivals" element={<PageTransition><Festivals /></PageTransition>} />
-        </Routes>
-      </AnimatePresence>
-    </div>
+    <ThemeProvider>
+      <div className="min-h-screen bg-light-bg dark:bg-gray-900 text-light-text dark:text-white relative overflow-hidden">
+        <NeoBackground />
+        <Navbar />
+        <AnimatePresence mode="wait">
+          <Routes location={location} key={location.pathname}>
+            <Route path="/" element={<Home />} />
+            <Route path="/culture" element={<PageTransition><Culture /></PageTransition>} />
+            <Route path="/culture/:id/:state" element={<PageTransition><CultureDetail /></PageTransition>} />
+            <Route path="/states" element={<PageTransition><States /></PageTransition>} />
+            <Route path="/states/:state" element={<PageTransition><StateDetails /></PageTransition>} />
+            <Route path="/login" element={<PageTransition><Login /></PageTransition>} />
+            <Route path="/food" element={<PageTransition><Food /></PageTransition>} />
+            <Route path="/festivals" element={<PageTransition><Festivals /></PageTransition>} />
+          </Routes>
+        </AnimatePresence>
+        <Footer />
+      </div>
+    </ThemeProvider>
   );
 }
 
