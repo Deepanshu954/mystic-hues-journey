@@ -7,7 +7,7 @@ export interface State {
   thumbnail: string;
   famous: string;
   isUT: boolean;
-  capital: string; // Adding the missing capital property
+  capital: string;
   tags: string[];
   places: {
     name: string;
@@ -52,7 +52,7 @@ export const states: State[] = [
     thumbnail: "https://source.unsplash.com/random/100x100/?rajasthan",
     famous: "Desert landscapes and royal palaces",
     isUT: false,
-    tags: ["Palaces", "Desert", "Culture"],
+    tags: ["Palaces", "Desert", "Culture", "North India"],
     places: [
       {
         name: "Jaipur",
@@ -117,7 +117,7 @@ export const states: State[] = [
     thumbnail: "https://source.unsplash.com/random/100x100/?kerala",
     famous: "Backwaters and Ayurvedic wellness",
     isUT: false,
-    tags: ["Backwaters", "Nature", "Ayurveda"],
+    tags: ["Backwaters", "Nature", "Ayurveda", "South India"],
     places: [
       {
         name: "Alleppey",
@@ -182,7 +182,7 @@ export const states: State[] = [
     thumbnail: "https://source.unsplash.com/random/100x100/?himachal",
     famous: "Himalayan landscapes and adventure tourism",
     isUT: false,
-    tags: ["Mountains", "Adventure", "Nature"],
+    tags: ["Mountains", "Adventure", "Nature", "North India"],
     places: [
       {
         name: "Shimla",
@@ -247,7 +247,7 @@ export const states: State[] = [
     thumbnail: "https://source.unsplash.com/random/100x100/?gujarat",
     famous: "White desert of Rann of Kutch and business enterprise",
     isUT: false,
-    tags: ["Culture", "Heritage", "Festivals"],
+    tags: ["Culture", "Heritage", "Festivals", "West India"],
     places: [
       {
         name: "Rann of Kutch",
@@ -312,7 +312,7 @@ export const states: State[] = [
     thumbnail: "https://source.unsplash.com/random/100x100/?tamil-nadu",
     famous: "Dravidian temples and classical dance forms",
     isUT: false,
-    tags: ["Temples", "Art", "Culture"],
+    tags: ["Temples", "Art", "Culture", "South India"],
     places: [
       {
         name: "Meenakshi Temple",
