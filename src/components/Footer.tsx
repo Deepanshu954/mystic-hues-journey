@@ -2,7 +2,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { Facebook, Twitter, Instagram, Youtube, Mail, Heart } from 'lucide-react';
+import { Facebook, Twitter, Instagram, Youtube, Heart } from 'lucide-react';
 
 const Footer: React.FC = () => {
   const footerLinks = [

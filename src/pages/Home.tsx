@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { MapPin, Utensils, Landmark, PartyPopper, ArrowRight, Globe, BookOpen, Image, Star } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
@@ -6,7 +5,6 @@ import StateCard from '../components/StateCard';
 import FeaturedSection from '../components/FeaturedSection';
 import VideoModal from '../components/VideoModal';
 import PageTransition from '../components/PageTransition';
-import NeoBackground from '../components/NeoBackground';
 import Newsletter from '../components/Newsletter';
 import Testimonials from '../components/Testimonials';
 import UpcomingEvents from '../components/UpcomingEvents';
