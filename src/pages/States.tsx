@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-// Removed unused Link import
 import { states } from '../data/states';
 import StateCard from '../components/StateCard';
 import PageHeader from '../components/PageHeader';

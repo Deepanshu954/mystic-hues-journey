@@ -6,9 +6,10 @@ import { states } from '../data/states';
 import { motion } from 'framer-motion';
 import ThemeToggle from './ThemeToggle';
 
-// Updated nav items without the Home option
+// Updated nav items to include Regions
 const navItems = [
   { path: '/states', label: 'States' },
+  { path: '/regions', label: 'Regions' },
   { path: '/culture', label: 'Culture' },
   { path: '/festivals', label: 'Festivals' },
   { path: '/food', label: 'Food' },

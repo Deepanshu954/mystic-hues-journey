@@ -9,6 +9,8 @@ import StateDetails from './pages/StateDetails';
 import Login from './pages/Login';
 import Food from './pages/Food';
 import Festivals from './pages/Festivals';
+import Regions from './pages/Regions';
+import RegionPage from './components/RegionPage';
 import Navbar from './components/Navbar';
 import NeoBackground from './components/NeoBackground';
 import PageTransition from './components/PageTransition';
@@ -30,6 +32,8 @@ function App() {
             <Route path="/culture/:id/:state" element={<PageTransition><CultureDetail /></PageTransition>} />
             <Route path="/states" element={<PageTransition><States /></PageTransition>} />
             <Route path="/states/:state" element={<PageTransition><StateDetails /></PageTransition>} />
+            <Route path="/regions" element={<PageTransition><Regions /></PageTransition>} />
+            <Route path="/regions/:region" element={<PageTransition><RegionPage /></PageTransition>} />
             <Route path="/login" element={<PageTransition><Login /></PageTransition>} />
             <Route path="/food" element={<PageTransition><Food /></PageTransition>} />
             <Route path="/festivals" element={<PageTransition><Festivals /></PageTransition>} />
