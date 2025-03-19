@@ -1,9 +1,7 @@
-
 import { motion } from 'framer-motion';
 import { useParams, Link } from 'react-router-dom';
 import { MapPin, ArrowLeft } from 'lucide-react';
 import StateCard from './StateCard';
-import PageHeader from './PageHeader';
 import { getStatesByRegion, regionThemes } from '../utils/regionUtils';
 
 type RegionTheme = {
