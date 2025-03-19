@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -122,12 +123,18 @@
   @apply bg-white border border-black/10 rounded-xl shadow-light-card overflow-hidden hover:border-saffron-400/50 transition-all duration-300;
 }
 
-.neo-gradient-text {
-  @apply text-transparent bg-clip-text bg-gradient-to-r from-neo-violet to-neo-indigo dark:from-neo-violet dark:to-neo-indigo light:from-saffron-500 light:to-orange-500;
-}
+@layer components {
+  .neo-gradient-text {
+    @apply text-transparent bg-clip-text bg-gradient-to-r;
+  }
 
-.light .neo-gradient-text {
-  @apply text-transparent bg-clip-text bg-gradient-to-r from-saffron-500 to-orange-500;
+  .dark .neo-gradient-text {
+    @apply from-neo-violet to-neo-indigo;
+  }
+
+  .light .neo-gradient-text {
+    @apply from-saffron-500 to-orange-500;
+  }
 }
 
 .neo-grid-bg {
