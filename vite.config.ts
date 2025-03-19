@@ -14,8 +14,9 @@ export default defineConfig(({ mode }) => ({
     exclude: ['lucide-react'],
   },
   server: {
-    host: "::",
-    port: 8080
+    port: 5173,
+    strictPort: false,
+    open: true,
   },
   resolve: {
     alias: {

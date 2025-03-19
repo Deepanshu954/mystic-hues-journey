@@ -1,6 +1,6 @@
 
 import { motion } from 'framer-motion';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import { MapPin, ArrowLeft } from 'lucide-react';
 import StateCard from './StateCard';
 import { getStatesByRegion, regionThemes } from '../utils/regionUtils';
@@ -13,6 +13,7 @@ type RegionTheme = {
 
 const RegionPage = () => {
   const { region } = useParams<{ region: string }>();
+  const navigate = useNavigate();
   const decodedRegion = region ? decodeURIComponent(region.replace(/-/g, ' ')) + ' India' : '';
   const states = getStatesByRegion(decodedRegion);
   
@@ -35,6 +36,11 @@ const RegionPage = () => {
 
   const description = regionDescriptions[decodedRegion] || 'Explore the diverse states and union territories in this beautiful region of India.';
 
+  // Handle "View All States" with region filter
+  const handleViewAllStates = () => {
+    navigate('/states', { state: { selectedRegion: decodedRegion } });
+  };
+
   return (
     <motion.div
       className="page-transition"
@@ -49,9 +55,12 @@ const RegionPage = () => {
             <Link to="/regions" className="inline-flex items-center gap-2 text-white/80 hover:text-white mb-6 transition-colors">
               <ArrowLeft className="w-4 h-4" /> Back to All Regions
             </Link>
-            <Link to="/states" className="inline-flex items-center gap-2 text-white/80 hover:text-white mb-6 transition-colors text-sm">
-              View All States
-            </Link>
+            <button 
+              onClick={handleViewAllStates} 
+              className="inline-flex items-center gap-2 text-white/80 hover:text-white mb-6 transition-colors text-sm"
+            >
+              View All States with {decodedRegion.replace(' India', '')} Filter
+            </button>
           </div>
           <h1 className="text-4xl md:text-6xl font-bold text-white mb-4">{decodedRegion.replace(' India', '')}</h1>
           <p className="text-white/80 max-w-2xl text-lg">{description}</p>

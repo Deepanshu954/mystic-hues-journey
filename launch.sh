@@ -34,20 +34,6 @@ if [ ! -f "package.json" ]; then
     exit 1
 fi
 
-# Add build:dev script to package.json if it doesn't exist
-if ! grep -q "\"build:dev\"" package.json; then
-    echo -e "${YELLOW}⚠️ Adding build:dev script to package.json...${NC}"
-    # Use Node.js to modify the package.json
-    node -e "
-        const fs = require('fs');
-        const pkg = JSON.parse(fs.readFileSync('package.json'));
-        pkg.scripts = pkg.scripts || {};
-        pkg.scripts['build:dev'] = 'vite build --mode development';
-        fs.writeFileSync('package.json', JSON.stringify(pkg, null, 2));
-    "
-    echo -e "${GREEN}✅ build:dev script added to package.json${NC}"
-fi
-
 # Check for installed dependencies
 if [ ! -d "node_modules" ]; then
     echo -e "${YELLOW}📦 Installing dependencies (this may take a while)...${NC}"
@@ -67,15 +53,19 @@ fi
 
 # Make script executable
 chmod +x launch.sh
+chmod +x launch.command
 
 echo -e "\n${CYAN}=== Mystic India Application Information ===${NC}"
 echo -e "${GREEN}• Theme:${NC} Light/Dark mode toggle available in the top navigation"
-echo -e "${GREEN}• Pages:${NC} Home, States, Culture, Festivals, Food"
-echo -e "${GREEN}• Features:${NC} Interactive UI, Background Video, Responsive Design"
+echo -e "${GREEN}• Pages:${NC} Home, States, Culture, Festivals, Food, Regions"
+echo -e "${GREEN}• Features:${NC} Interactive UI, Responsive Design, Region Filtering"
 echo -e "${YELLOW}• Tip:${NC} For best experience, view in a modern browser with good internet connection\n"
 
+# Check for PORT environment variable or use 5173 as default
+PORT=${PORT:-5173}
+
 echo -e "${YELLOW}🚀 Starting the application...${NC}"
-echo -e "${CYAN}The application will be available at: ${GREEN}http://localhost:5173${NC}\n"
+echo -e "${CYAN}The application will be available at: ${GREEN}http://localhost:${PORT}${NC}\n"
 
 # Start the development server with improved output
 npm run dev

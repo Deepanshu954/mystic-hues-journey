@@ -1,17 +1,28 @@
 
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { useLocation } from 'react-router-dom';
 import { states } from '../data/states';
 import StateCard from '../components/StateCard';
 import PageHeader from '../components/PageHeader';
 import { MapPin, Filter, ChevronDown, ChevronUp } from 'lucide-react';
 
 const States = () => {
+  const location = useLocation();
   const [searchTerm, setSearchTerm] = useState('');
   const [filteredStates, setFilteredStates] = useState(states);
   const [selectedRegion, setSelectedRegion] = useState<string | null>(null);
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [isFilterExpanded, setIsFilterExpanded] = useState(true);
+
+  // Check if a region was passed from RegionPage
+  useEffect(() => {
+    if (location.state && location.state.selectedRegion) {
+      setSelectedRegion(location.state.selectedRegion);
+      // Open filter on mobile when coming from region page
+      setIsFilterOpen(true);
+    }
+  }, [location.state]);
 
   useEffect(() => {
     // Apply both search and region filters
@@ -85,7 +96,7 @@ const States = () => {
           {/* Filter Expand/Collapse Toggle - Visible on larger screens */}
           <button
             onClick={toggleFilterExpand}
-            className="hidden md:flex items-center gap-2 text-gray-700 dark:text-gray-300 hover:text-violet-600 dark:hover:text-violet-400"
+            className="hidden md:flex items-center gap-2 text-gray-700 dark:text-gray-300 hover:text-saffron-500 dark:hover:text-violet-400"
           >
             <span>Filters</span>
             {isFilterExpanded ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
