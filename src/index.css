@@ -1,4 +1,3 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -64,50 +63,80 @@
 }
 
 /* Custom Scrollbar - Light Mode */
-::-webkit-scrollbar {
+.light ::-webkit-scrollbar {
   width: 6px;
 }
 
-::-webkit-scrollbar-track {
-  background: #f1f1f1;
+.light ::-webkit-scrollbar-track {
+  background: #fff9f0;
 }
 
-::-webkit-scrollbar-thumb {
-  background: rgba(139, 92, 246, 0.4);
+.light ::-webkit-scrollbar-thumb {
+  background: rgba(249, 115, 22, 0.4);
   border-radius: 6px;
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background: rgba(139, 92, 246, 0.6);
+.light ::-webkit-scrollbar-thumb:hover {
+  background: rgba(249, 115, 22, 0.6);
 }
 
-/* Neo Components */
-.neo-glass {
-  @apply backdrop-blur-md dark:bg-white/5 bg-black/5 border dark:border-white/10 border-black/10 rounded-xl;
+/* Neo Components - Dark Theme */
+.dark .neo-glass {
+  @apply backdrop-blur-md bg-white/5 border border-white/10 rounded-xl;
 }
 
-.neo-panel {
-  @apply dark:bg-neo-dark/80 bg-white/80 border dark:border-white/10 border-black/10 backdrop-blur-md rounded-xl;
+.dark .neo-panel {
+  @apply bg-neo-dark/80 border border-white/10 backdrop-blur-md rounded-xl;
 }
 
-.neo-button {
-  @apply px-6 py-2 bg-gradient-to-br dark:from-neo-violet dark:to-neo-indigo from-light-primary to-light-secondary dark:hover:from-neo-indigo dark:hover:to-neo-violet hover:from-light-secondary hover:to-light-primary text-white rounded-lg transition-all duration-300 shadow-neo-button hover:shadow-neo font-medium;
+.dark .neo-button {
+  @apply px-6 py-2 bg-gradient-to-br from-neo-violet to-neo-indigo hover:from-neo-indigo hover:to-neo-violet text-white rounded-lg transition-all duration-300 shadow-neo-button hover:shadow-neo font-medium;
 }
 
-.neo-input {
-  @apply dark:bg-neo-dark/50 bg-light-card/50 dark:border-white/10 border-black/10 dark:text-white text-light-text px-4 py-3 rounded-lg focus:outline-none focus:border-neo-violet/50 focus:ring-2 focus:ring-neo-violet/30 transition-all duration-300;
+.dark .neo-input {
+  @apply bg-neo-dark/50 border-white/10 text-white px-4 py-3 rounded-lg focus:outline-none focus:border-neo-violet/50 focus:ring-2 focus:ring-neo-violet/30 transition-all duration-300;
 }
 
-.neo-card {
-  @apply dark:bg-neo-dark/90 bg-white border dark:border-white/10 border-black/10 rounded-xl dark:shadow-neo-card shadow-light-card overflow-hidden hover:border-neo-violet/30 transition-all duration-300;
+.dark .neo-card {
+  @apply bg-neo-dark/90 border border-white/10 rounded-xl shadow-neo-card overflow-hidden hover:border-neo-violet/30 transition-all duration-300;
+}
+
+/* Saffron Components - Light Theme */
+.light .neo-glass {
+  @apply backdrop-blur-md bg-black/5 border border-black/10 rounded-xl;
+}
+
+.light .neo-panel {
+  @apply bg-white/80 border border-black/10 backdrop-blur-md rounded-xl;
+}
+
+.light .neo-button {
+  @apply px-6 py-2 bg-gradient-to-br from-saffron-500 to-saffron-400 hover:from-saffron-400 hover:to-saffron-500 text-white rounded-lg transition-all duration-300 shadow-saffron-button hover:shadow-saffron font-medium;
+}
+
+.light .neo-input {
+  @apply bg-light-card/50 border-black/10 text-light-text px-4 py-3 rounded-lg focus:outline-none focus:border-saffron-500/50 focus:ring-2 focus:ring-saffron-500/30 transition-all duration-300;
+}
+
+.light .neo-card {
+  @apply bg-white border border-black/10 rounded-xl shadow-light-card overflow-hidden hover:border-saffron-400/50 transition-all duration-300;
 }
 
 .neo-gradient-text {
-  @apply text-transparent bg-clip-text bg-gradient-to-r from-neo-violet to-neo-indigo;
+  @apply text-transparent bg-clip-text bg-gradient-to-r from-neo-violet to-neo-indigo dark:from-neo-violet dark:to-neo-indigo light:from-saffron-500 light:to-orange-500;
+}
+
+.light .neo-gradient-text {
+  @apply text-transparent bg-clip-text bg-gradient-to-r from-saffron-500 to-orange-500;
 }
 
 .neo-grid-bg {
   background-image: radial-gradient(rgba(139, 92, 246, 0.15) 2px, transparent 2px);
+  background-size: 30px 30px;
+}
+
+.light .neo-grid-bg {
+  background-image: radial-gradient(rgba(249, 115, 22, 0.15) 2px, transparent 2px);
   background-size: 30px 30px;
 }
 
@@ -116,6 +145,15 @@
   border: 3px solid rgba(139, 92, 246, 0.2);
   border-radius: 50%;
   border-top: 3px solid rgba(139, 92, 246, 0.8);
+  width: 24px;
+  height: 24px;
+  animation: spin 1s linear infinite;
+}
+
+.light .neo-spinner {
+  border: 3px solid rgba(249, 115, 22, 0.2);
+  border-radius: 50%;
+  border-top: 3px solid rgba(249, 115, 22, 0.8);
   width: 24px;
   height: 24px;
   animation: spin 1s linear infinite;
@@ -180,9 +218,36 @@
   .text-gradient {
     @apply text-transparent bg-clip-text bg-gradient-to-r from-neo-violet to-neo-indigo;
   }
+
+  .text-gradient-saffron {
+    @apply text-transparent bg-clip-text bg-gradient-to-r from-saffron-500 to-orange-500;
+  }
 }
 
 /* Body default styles */
 body {
   @apply bg-light-bg dark:bg-neo-black text-light-text dark:text-white font-sans overflow-x-hidden;
+}
+
+/* 3D Card Effect */
+.card-3d {
+  transform-style: preserve-3d;
+  transition: transform 0.2s ease-out;
+}
+
+.card-3d-content {
+  transform: translateZ(20px);
+}
+
+/* Region Badges */
+.region-badge {
+  @apply inline-flex items-center gap-1 py-1 px-3 rounded-full text-sm font-medium;
+}
+
+.dark .region-badge {
+  @apply bg-violet-600/80 text-white;
+}
+
+.light .region-badge {
+  @apply bg-saffron-500/80 text-white;
 }

@@ -14,7 +14,7 @@ function StateDetails() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Simulate data loading
+    // Find state data
     setLoading(true);
     setTimeout(() => {
       const stateData = states.find(s => s.path === statePath);
@@ -31,8 +31,8 @@ function StateDetails() {
     return (
       <div className="min-h-screen bg-light-bg dark:bg-gray-900 pt-24 flex items-center justify-center">
         <div className="animate-pulse flex flex-col items-center">
-          <div className="h-8 w-60 bg-gray-300 dark:bg-gray-700 rounded mb-4"></div>
-          <div className="h-4 w-96 bg-gray-200 dark:bg-gray-800 rounded"></div>
+          <div className="h-8 w-60 dark:bg-gray-700 light:bg-saffron-100 rounded mb-4"></div>
+          <div className="h-4 w-96 dark:bg-gray-800 light:bg-saffron-50 rounded"></div>
         </div>
       </div>
     );
@@ -42,10 +42,10 @@ function StateDetails() {
     return (
       <div className="min-h-screen bg-light-bg dark:bg-gray-900 pt-24 flex items-center justify-center">
         <div className="text-center">
-          <h2 className="text-2xl text-light-text dark:text-white mb-4">State not found</h2>
+          <h2 className="text-2xl dark:text-white light:text-light-text mb-4">State not found</h2>
           <Link 
             to="/states"
-            className="px-6 py-3 bg-violet-600 text-white rounded-lg inline-flex items-center gap-2"
+            className="neo-button inline-flex items-center gap-2"
           >
             <Home className="w-5 h-5" /> Return to States
           </Link>
@@ -71,14 +71,14 @@ function StateDetails() {
   return (
     <div className="min-h-screen bg-light-bg dark:bg-gray-900 pt-24">
       {/* Breadcrumb Navigation */}
-      <div className="bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm py-3 sticky top-20 z-30">
+      <div className="dark:bg-gray-800/50 light:bg-white/50 backdrop-blur-sm py-3 sticky top-20 z-30">
         <div className="max-w-7xl mx-auto px-4">
-          <div className="flex items-center text-sm text-light-muted dark:text-gray-400">
-            <Link to="/" className="hover:text-violet-600 dark:hover:text-violet-400">Home</Link>
+          <div className="flex items-center text-sm dark:text-gray-400 light:text-light-muted">
+            <Link to="/" className="dark:hover:text-violet-400 light:hover:text-saffron-500">Home</Link>
             <ArrowRight className="w-3 h-3 mx-2" />
-            <Link to="/states" className="hover:text-violet-600 dark:hover:text-violet-400">States</Link>
+            <Link to="/states" className="dark:hover:text-violet-400 light:hover:text-saffron-500">States</Link>
             <ArrowRight className="w-3 h-3 mx-2" />
-            <span className="text-light-text dark:text-white">{data.name}</span>
+            <span className="dark:text-white light:text-light-text">{data.name}</span>
           </div>
         </div>
       </div>
@@ -98,7 +98,7 @@ function StateDetails() {
           transition={{ duration: 0.5 }}
         >
           {region && (
-            <div className="inline-flex items-center gap-1 bg-violet-600/80 text-white px-3 py-1 rounded-full text-sm mb-4">
+            <div className="region-badge mb-4">
               <MapPin className="w-4 h-4" /> {region}
             </div>
           )}
@@ -121,34 +121,34 @@ function StateDetails() {
       </div>
 
       {/* Quick Facts */}
-      <div className="bg-white dark:bg-gray-800 py-8 shadow-md">
+      <div className="dark:bg-gray-800 light:bg-white py-8 shadow-md">
         <div className="max-w-7xl mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="flex items-center gap-4">
-              <div className="bg-violet-100 dark:bg-violet-900/30 p-3 rounded-lg">
-                <Palette className="w-6 h-6 text-violet-600 dark:text-violet-400" />
+              <div className="dark:bg-violet-900/30 light:bg-saffron-100 p-3 rounded-lg">
+                <Palette className="w-6 h-6 dark:text-violet-400 light:text-saffron-500" />
               </div>
               <div>
-                <h3 className="text-sm text-light-muted dark:text-gray-400">Famous For</h3>
-                <p className="text-light-text dark:text-white font-medium">{data.famous}</p>
+                <h3 className="text-sm dark:text-gray-400 light:text-light-muted">Famous For</h3>
+                <p className="dark:text-white light:text-light-text font-medium">{data.famous}</p>
               </div>
             </div>
             <div className="flex items-center gap-4">
-              <div className="bg-violet-100 dark:bg-violet-900/30 p-3 rounded-lg">
-                <MapPin className="w-6 h-6 text-violet-600 dark:text-violet-400" />
+              <div className="dark:bg-violet-900/30 light:bg-saffron-100 p-3 rounded-lg">
+                <MapPin className="w-6 h-6 dark:text-violet-400 light:text-saffron-500" />
               </div>
               <div>
-                <h3 className="text-sm text-light-muted dark:text-gray-400">Region</h3>
-                <p className="text-light-text dark:text-white font-medium">{region}</p>
+                <h3 className="text-sm dark:text-gray-400 light:text-light-muted">Region</h3>
+                <p className="dark:text-white light:text-light-text font-medium">{region}</p>
               </div>
             </div>
             <div className="flex items-center gap-4">
-              <div className="bg-violet-100 dark:bg-violet-900/30 p-3 rounded-lg">
-                <LandPlot className="w-6 h-6 text-violet-600 dark:text-violet-400" />
+              <div className="dark:bg-violet-900/30 light:bg-saffron-100 p-3 rounded-lg">
+                <LandPlot className="w-6 h-6 dark:text-violet-400 light:text-saffron-500" />
               </div>
               <div>
-                <h3 className="text-sm text-light-muted dark:text-gray-400">Places to Visit</h3>
-                <p className="text-light-text dark:text-white font-medium">{places.length} Destinations</p>
+                <h3 className="text-sm dark:text-gray-400 light:text-light-muted">Places to Visit</h3>
+                <p className="dark:text-white light:text-light-text font-medium">{places.length} Destinations</p>
               </div>
             </div>
           </div>
@@ -164,30 +164,30 @@ function StateDetails() {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <h2 className="text-4xl font-bold mb-12 flex items-center gap-4 text-light-text dark:text-white">
-              <Palette className="w-10 h-10 text-violet-600 dark:text-violet-400" />
+            <h2 className="text-4xl font-bold mb-12 flex items-center gap-4 dark:text-white light:text-light-text">
+              <Palette className="w-10 h-10 dark:text-violet-400 light:text-saffron-500" />
               Cultural Heritage
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div className="bg-white dark:bg-gray-800 rounded-xl p-8 shadow-light-card dark:shadow-none">
-                <h3 className="text-2xl font-semibold mb-4 text-light-text dark:text-white">Art Forms</h3>
-                <p className="text-light-muted dark:text-gray-300">{data.culture.art}</p>
+              <div className="neo-card p-8">
+                <h3 className="text-2xl font-semibold mb-4 dark:text-white light:text-light-text">Art Forms</h3>
+                <p className="dark:text-gray-300 light:text-light-muted">{data.culture.art}</p>
               </div>
-              <div className="bg-white dark:bg-gray-800 rounded-xl p-8 shadow-light-card dark:shadow-none">
-                <h3 className="text-2xl font-semibold mb-4 text-light-text dark:text-white">Dance</h3>
-                <p className="text-light-muted dark:text-gray-300">{data.culture.dance}</p>
+              <div className="neo-card p-8">
+                <h3 className="text-2xl font-semibold mb-4 dark:text-white light:text-light-text">Dance</h3>
+                <p className="dark:text-gray-300 light:text-light-muted">{data.culture.dance}</p>
               </div>
-              <div className="bg-white dark:bg-gray-800 rounded-xl p-8 shadow-light-card dark:shadow-none">
-                <h3 className="text-2xl font-semibold mb-4 text-light-text dark:text-white">Festivals</h3>
-                <ul className="list-disc list-inside text-light-muted dark:text-gray-300">
+              <div className="neo-card p-8">
+                <h3 className="text-2xl font-semibold mb-4 dark:text-white light:text-light-text">Festivals</h3>
+                <ul className="list-disc list-inside dark:text-gray-300 light:text-light-muted">
                   {data.culture.festivals.map((festival) => (
                     <li key={festival}>{festival}</li>
                   ))}
                 </ul>
               </div>
-              <div className="bg-white dark:bg-gray-800 rounded-xl p-8 shadow-light-card dark:shadow-none">
-                <h3 className="text-2xl font-semibold mb-4 text-light-text dark:text-white">Handicrafts</h3>
-                <ul className="list-disc list-inside text-light-muted dark:text-gray-300">
+              <div className="neo-card p-8">
+                <h3 className="text-2xl font-semibold mb-4 dark:text-white light:text-light-text">Handicrafts</h3>
+                <ul className="list-disc list-inside dark:text-gray-300 light:text-light-muted">
                   {data.culture.handicrafts.map((craft) => (
                     <li key={craft}>{craft}</li>
                   ))}
@@ -200,7 +200,7 @@ function StateDetails() {
 
       {/* Places to Visit */}
       {places.length > 0 && (
-        <div className="bg-gray-50 dark:bg-gray-800/50 py-16">
+        <div className="dark:bg-gray-800/50 light:bg-saffron-50 py-16">
           <div className="max-w-7xl mx-auto px-4">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -208,15 +208,15 @@ function StateDetails() {
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
             >
-              <h2 className="text-4xl font-bold mb-12 flex items-center gap-4 text-light-text dark:text-white">
-                <LandPlot className="w-10 h-10 text-violet-600 dark:text-violet-400" />
+              <h2 className="text-4xl font-bold mb-12 flex items-center gap-4 dark:text-white light:text-light-text">
+                <LandPlot className="w-10 h-10 dark:text-violet-400 light:text-saffron-500" />
                 Places to Visit
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {displayedPlaces.map((place, index) => (
                   <motion.div 
                     key={place.name} 
-                    className="bg-white dark:bg-gray-800 rounded-xl overflow-hidden group shadow-light-card dark:shadow-none"
+                    className="neo-card group overflow-hidden"
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
@@ -231,8 +231,8 @@ function StateDetails() {
                       />
                     </div>
                     <div className="p-6">
-                      <h3 className="text-2xl font-semibold mb-3 text-light-text dark:text-white">{place.name}</h3>
-                      <p className="text-light-muted dark:text-gray-300">{place.description}</p>
+                      <h3 className="text-2xl font-semibold mb-3 dark:text-white light:text-light-text">{place.name}</h3>
+                      <p className="dark:text-gray-300 light:text-light-muted">{place.description}</p>
                     </div>
                   </motion.div>
                 ))}
@@ -240,7 +240,7 @@ function StateDetails() {
               {places.length > 3 && (
                 <button
                   onClick={() => setShowAllPlaces(!showAllPlaces)}
-                  className="mt-8 flex items-center gap-2 mx-auto px-6 py-3 bg-violet-100 dark:bg-violet-900/30 hover:bg-violet-200 dark:hover:bg-violet-800/30 rounded-lg text-violet-700 dark:text-violet-400 border border-violet-200 dark:border-violet-800/30 transition-colors"
+                  className="mt-8 flex items-center gap-2 mx-auto px-6 py-3 dark:bg-violet-900/30 dark:text-violet-400 dark:hover:bg-violet-800/30 dark:border-violet-800/30 light:bg-saffron-100 light:text-saffron-700 light:hover:bg-saffron-200 light:border-saffron-200 rounded-lg border transition-colors"
                 >
                   {showAllPlaces ? (
                     <>Show Less <ChevronUp className="w-5 h-5" /></>
@@ -263,15 +263,15 @@ function StateDetails() {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <h2 className="text-4xl font-bold mb-12 flex items-center gap-4 text-light-text dark:text-white">
-              <Utensils className="w-10 h-10 text-violet-600 dark:text-violet-400" />
+            <h2 className="text-4xl font-bold mb-12 flex items-center gap-4 dark:text-white light:text-light-text">
+              <Utensils className="w-10 h-10 dark:text-violet-400 light:text-saffron-500" />
               Traditional Cuisine
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {displayedCuisine.map((dish, index) => (
                 <motion.div 
                   key={dish.name} 
-                  className="bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-light-card dark:shadow-none"
+                  className="neo-card overflow-hidden"
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
@@ -286,8 +286,8 @@ function StateDetails() {
                     />
                   </div>
                   <div className="p-6">
-                    <h3 className="text-xl font-semibold mb-2 text-light-text dark:text-white">{dish.name}</h3>
-                    <p className="text-light-muted dark:text-gray-300">{dish.description}</p>
+                    <h3 className="text-xl font-semibold mb-2 dark:text-white light:text-light-text">{dish.name}</h3>
+                    <p className="dark:text-gray-300 light:text-light-muted">{dish.description}</p>
                   </div>
                 </motion.div>
               ))}
@@ -295,7 +295,7 @@ function StateDetails() {
             {cuisine.length > 3 && (
               <button
                 onClick={() => setShowAllCuisine(!showAllCuisine)}
-                className="mt-8 flex items-center gap-2 mx-auto px-6 py-3 bg-violet-100 dark:bg-violet-900/30 hover:bg-violet-200 dark:hover:bg-violet-800/30 rounded-lg text-violet-700 dark:text-violet-400 border border-violet-200 dark:border-violet-800/30 transition-colors"
+                className="mt-8 flex items-center gap-2 mx-auto px-6 py-3 dark:bg-violet-900/30 dark:text-violet-400 dark:hover:bg-violet-800/30 dark:border-violet-800/30 light:bg-saffron-100 light:text-saffron-700 light:hover:bg-saffron-200 light:border-saffron-200 rounded-lg border transition-colors"
               >
                 {showAllCuisine ? (
                   <>Show Less <ChevronUp className="w-5 h-5" /></>
@@ -310,7 +310,7 @@ function StateDetails() {
 
       {/* History */}
       {data.history && (
-        <div className="bg-gray-50 dark:bg-gray-800/50 py-16">
+        <div className="dark:bg-gray-800/50 light:bg-saffron-50 py-16">
           <div className="max-w-7xl mx-auto px-4">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -318,18 +318,18 @@ function StateDetails() {
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
             >
-              <h2 className="text-4xl font-bold mb-12 flex items-center gap-4 text-light-text dark:text-white">
-                <Clock className="w-10 h-10 text-violet-600 dark:text-violet-400" />
+              <h2 className="text-4xl font-bold mb-12 flex items-center gap-4 dark:text-white light:text-light-text">
+                <Clock className="w-10 h-10 dark:text-violet-400 light:text-saffron-500" />
                 History
               </h2>
               <div className="space-y-8">
-                <div className="bg-white dark:bg-gray-800 rounded-xl p-8 shadow-light-card dark:shadow-none">
-                  <h3 className="text-2xl font-semibold mb-4 text-violet-700 dark:text-violet-400">Ancient Period</h3>
-                  <p className="text-light-muted dark:text-gray-300 leading-relaxed mb-6">{data.history.ancient}</p>
+                <div className="neo-card p-8">
+                  <h3 className="text-2xl font-semibold mb-4 dark:text-violet-400 light:text-saffron-600">Ancient Period</h3>
+                  <p className="dark:text-gray-300 light:text-light-muted leading-relaxed mb-6">{data.history.ancient}</p>
                   {!showAllHistory && (
                     <button
                       onClick={() => setShowAllHistory(true)}
-                      className="text-violet-700 dark:text-violet-400 hover:text-violet-800 dark:hover:text-violet-300 flex items-center gap-2"
+                      className="dark:text-violet-400 dark:hover:text-violet-300 light:text-saffron-600 light:hover:text-saffron-700 flex items-center gap-2"
                     >
                       View Detailed Timeline <ChevronDown className="w-5 h-5" />
                     </button>
@@ -342,19 +342,19 @@ function StateDetails() {
                       {data.history.details.map((detail, index) => (
                         <motion.div 
                           key={index} 
-                          className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-light-card dark:border dark:border-gray-700 dark:shadow-none"
+                          className="neo-card p-6"
                           initial={{ opacity: 0, y: 20 }}
                           whileInView={{ opacity: 1, y: 0 }}
                           viewport={{ once: true }}
                           transition={{ duration: 0.5, delay: index * 0.1 }}
                         >
                           <div className="flex items-start gap-4">
-                            <div className="bg-violet-100 dark:bg-violet-900/30 text-violet-700 dark:text-violet-400 px-3 py-1 rounded-full text-sm">
+                            <div className="dark:bg-violet-900/30 dark:text-violet-400 light:bg-saffron-100 light:text-saffron-700 px-3 py-1 rounded-full text-sm">
                               {detail.year}
                             </div>
                             <div>
-                              <h4 className="text-lg font-semibold mb-2 text-light-text dark:text-white">{detail.period} Period</h4>
-                              <p className="text-light-muted dark:text-gray-300">{detail.description}</p>
+                              <h4 className="text-lg font-semibold mb-2 dark:text-white light:text-light-text">{detail.period} Period</h4>
+                              <p className="dark:text-gray-300 light:text-light-muted">{detail.description}</p>
                             </div>
                           </div>
                         </motion.div>
@@ -362,7 +362,7 @@ function StateDetails() {
                     </div>
                     <button
                       onClick={() => setShowAllHistory(false)}
-                      className="text-violet-700 dark:text-violet-400 hover:text-violet-800 dark:hover:text-violet-300 flex items-center gap-2"
+                      className="dark:text-violet-400 dark:hover:text-violet-300 light:text-saffron-600 light:hover:text-saffron-700 flex items-center gap-2"
                     >
                       Show Less <ChevronUp className="w-5 h-5" />
                     </button>
@@ -383,24 +383,24 @@ function StateDetails() {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <h2 className="text-4xl font-bold mb-12 flex items-center gap-4 text-light-text dark:text-white">
-              <Newspaper className="w-10 h-10 text-violet-600 dark:text-violet-400" />
+            <h2 className="text-4xl font-bold mb-12 flex items-center gap-4 dark:text-white light:text-light-text">
+              <Newspaper className="w-10 h-10 dark:text-violet-400 light:text-saffron-500" />
               Latest News
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {data.news.map((item, index) => (
                 <motion.div 
                   key={item.title} 
-                  className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-light-card dark:shadow-none"
+                  className="neo-card p-6"
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                   whileHover={{ y: -5 }}
                 >
-                  <h3 className="text-xl font-semibold mb-2 text-light-text dark:text-white">{item.title}</h3>
-                  <p className="text-sm text-violet-600 dark:text-violet-400 mb-4">{item.date}</p>
-                  <p className="text-light-muted dark:text-gray-300">{item.summary}</p>
+                  <h3 className="text-xl font-semibold mb-2 dark:text-white light:text-light-text">{item.title}</h3>
+                  <p className="text-sm dark:text-violet-400 light:text-saffron-600 mb-4">{item.date}</p>
+                  <p className="dark:text-gray-300 light:text-light-muted">{item.summary}</p>
                 </motion.div>
               ))}
             </div>
@@ -410,7 +410,7 @@ function StateDetails() {
 
       {/* Explore More States */}
       {relatedStates.length > 0 && (
-        <div className="bg-gray-50 dark:bg-gray-800/50 py-16">
+        <div className="dark:bg-gray-800/50 light:bg-saffron-50 py-16">
           <div className="max-w-7xl mx-auto px-4">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -418,18 +418,22 @@ function StateDetails() {
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
             >
-              <h2 className="text-4xl font-bold mb-4 text-light-text dark:text-white">Explore More {region}</h2>
-              <p className="text-light-muted dark:text-gray-300 mb-12">Discover other fascinating states in this region</p>
+              <h2 className="text-4xl font-bold mb-4 dark:text-white light:text-light-text">Explore More {region}</h2>
+              <p className="dark:text-gray-300 light:text-light-muted mb-12">Discover other fascinating states in this region</p>
               
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 {relatedStates.map((state, index) => (
                   <motion.div
                     key={state.path}
-                    className="group"
+                    className="group card-3d"
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5, delay: index * 0.1 }}
+                    whileHover={{ 
+                      scale: 1.02,
+                      transition: { duration: 0.2 }
+                    }}
                   >
                     <Link to={`/states/${state.path}`}>
                       <div className="relative h-60 rounded-xl overflow-hidden shadow-light-card dark:shadow-none">
@@ -443,7 +447,7 @@ function StateDetails() {
                           <h3 className="text-2xl font-bold mb-2 text-white">{state.name}</h3>
                           <p className="text-gray-300 line-clamp-2">{state.description}</p>
                         </div>
-                        <div className="absolute inset-0 bg-violet-600/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                        <div className="absolute inset-0 dark:bg-violet-600/20 light:bg-saffron-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                       </div>
                     </Link>
                   </motion.div>
@@ -453,7 +457,7 @@ function StateDetails() {
               <div className="text-center mt-10">
                 <Link
                   to="/states"
-                  className="px-6 py-3 bg-violet-600 hover:bg-violet-700 text-white rounded-lg inline-flex items-center gap-2 shadow-neo transition-all hover:shadow-neo-hover"
+                  className="neo-button inline-flex items-center gap-2"
                 >
                   View All States <ArrowRight className="w-5 h-5" />
                 </Link>

@@ -5,6 +5,7 @@ import { Search, MapPin } from 'lucide-react';
 import { states } from '../data/states';
 import { motion } from 'framer-motion';
 import PageHeader from '../components/PageHeader';
+import StateCard from '../components/StateCard';
 
 // Group states by region
 const groupStatesByRegion = () => {
@@ -66,7 +67,7 @@ function States() {
                 placeholder="Search states, places, or culture..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full bg-white dark:bg-gray-800 text-light-text dark:text-white pl-12 pr-4 py-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-violet-500 border border-gray-200 dark:border-gray-700"
+                className="w-full neo-input pl-12 pr-4"
               />
             </div>
           </div>
@@ -76,7 +77,7 @@ function States() {
             {activeRegionFilter && (
               <button
                 onClick={() => setActiveRegionFilter(null)}
-                className="px-4 py-2 text-sm rounded-full bg-violet-100 dark:bg-violet-800 text-violet-800 dark:text-violet-100 hover:bg-violet-200 dark:hover:bg-violet-700 transition-colors"
+                className="px-4 py-2 text-sm rounded-full dark:bg-violet-800 dark:text-violet-100 dark:hover:bg-violet-700 light:bg-saffron-100 light:text-saffron-800 light:hover:bg-saffron-200 transition-colors"
               >
                 Clear Filter
               </button>
@@ -87,8 +88,8 @@ function States() {
                 onClick={() => setActiveRegionFilter(region === activeRegionFilter ? null : region)}
                 className={`px-4 py-2 text-sm rounded-full flex items-center gap-1 transition-colors ${
                   region === activeRegionFilter 
-                    ? 'bg-violet-600 text-white' 
-                    : 'bg-violet-50 dark:bg-gray-800 text-light-text dark:text-gray-300 hover:bg-violet-100 dark:hover:bg-gray-700'
+                    ? 'dark:bg-violet-600 dark:text-white light:bg-saffron-500 light:text-white' 
+                    : 'dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700 light:bg-saffron-50 light:text-saffron-800 light:hover:bg-saffron-100'
                 }`}
               >
                 <MapPin className="w-3 h-3" /> {region}
@@ -100,8 +101,8 @@ function States() {
         {/* Active Filters Display */}
         {activeRegionFilter && (
           <div className="mb-8">
-            <div className="px-4 py-3 bg-violet-50 dark:bg-violet-900/20 rounded-lg">
-              <p className="text-light-text dark:text-white">
+            <div className="px-4 py-3 dark:bg-violet-900/20 light:bg-saffron-100 rounded-lg">
+              <p className="dark:text-white light:text-saffron-800">
                 Showing states in <span className="font-semibold">{activeRegionFilter}</span>
               </p>
             </div>
@@ -114,18 +115,25 @@ function States() {
             {Object.entries(regionMap).map(([region, regionStates]) => (
               <div key={region} className="mb-16">
                 <motion.h2 
-                  className="text-3xl font-bold mb-8 flex items-center gap-2 text-light-text dark:text-white"
+                  className="text-3xl font-bold mb-8 flex items-center gap-2 dark:text-white light:text-light-text"
                   initial={{ opacity: 0, x: -20 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5 }}
                 >
-                  <MapPin className="w-6 h-6 text-violet-600 dark:text-violet-400" /> 
+                  <MapPin className="w-6 h-6 dark:text-violet-600 dark:text-violet-400 light:text-saffron-500" /> 
                   {region} ({regionStates.length})
                 </motion.h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                   {regionStates.map((state) => (
-                    <StateCard key={state.path} state={state} />
+                    <StateCard 
+                      key={state.path} 
+                      name={state.name}
+                      image={state.image}
+                      description={state.description}
+                      tags={state.tags}
+                      path={state.path}
+                    />
                   ))}
                 </div>
               </div>
@@ -136,10 +144,17 @@ function States() {
         {/* States Section - For search results or filtered results */}
         {(searchQuery || activeRegionFilter) && statesList.length > 0 && (
           <div className="mb-20">
-            <h2 className="text-3xl font-bold mb-8 text-light-text dark:text-white">States ({statesList.length})</h2>
+            <h2 className="text-3xl font-bold mb-8 dark:text-white light:text-light-text">States ({statesList.length})</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {statesList.map((state) => (
-                <StateCard key={state.path} state={state} />
+                <StateCard 
+                  key={state.path} 
+                  name={state.name}
+                  image={state.image}
+                  description={state.description}
+                  tags={state.tags}
+                  path={state.path}
+                />
               ))}
             </div>
           </div>
@@ -148,10 +163,17 @@ function States() {
         {/* Union Territories Section */}
         {(searchQuery || activeRegionFilter) && utList.length > 0 && (
           <div>
-            <h2 className="text-3xl font-bold mb-8 text-light-text dark:text-white">Union Territories ({utList.length})</h2>
+            <h2 className="text-3xl font-bold mb-8 dark:text-white light:text-light-text">Union Territories ({utList.length})</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {utList.map((ut) => (
-                <StateCard key={ut.path} state={ut} />
+                <StateCard 
+                  key={ut.path} 
+                  name={ut.name}
+                  image={ut.image}
+                  description={ut.description}
+                  tags={ut.tags}
+                  path={ut.path}
+                />
               ))}
             </div>
           </div>
@@ -160,59 +182,12 @@ function States() {
         {/* No Results Message */}
         {finalFilteredStates.length === 0 && (
           <div className="text-center py-20">
-            <p className="text-2xl text-light-muted dark:text-gray-400">No states or territories found matching your search.</p>
+            <p className="text-2xl dark:text-gray-400 light:text-light-muted">No states or territories found matching your search.</p>
           </div>
         )}
       </div>
     </div>
   );
 }
-
-interface StateCardProps {
-  state: {
-    name: string;
-    path: string;
-    image: string;
-    famous?: string;
-    tags?: string[];
-  };
-}
-
-const StateCard = ({ state }: StateCardProps) => {
-  return (
-    <Link
-      to={`/states/${state.path}`}
-      className="group"
-    >
-      <motion.div 
-        className="relative h-80 rounded-xl overflow-hidden shadow-lg"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-50px" }}
-        transition={{ duration: 0.5 }}
-        whileHover={{ y: -5 }}
-      >
-        <img
-          src={state.image}
-          alt={state.name}
-          className="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-110"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent" />
-        <div className="absolute bottom-0 left-0 right-0 p-6">
-          <h3 className="text-2xl font-bold mb-2 text-white">{state.name}</h3>
-          {state.famous && <p className="text-gray-300">Famous for: {state.famous}</p>}
-          <div className="flex flex-wrap gap-2 mt-3">
-            {state.tags?.filter(tag => !tag.includes('India')).slice(0, 3).map((tag, index) => (
-              <span key={index} className="text-sm px-2 py-1 bg-violet-500/20 text-violet-300 rounded-full">
-                {tag}
-              </span>
-            ))}
-          </div>
-        </div>
-        <div className="absolute inset-0 bg-violet-600/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-      </motion.div>
-    </Link>
-  );
-};
 
 export default States;
