@@ -1,3 +1,4 @@
+
 import { motion } from 'framer-motion';
 import { useParams, Link } from 'react-router-dom';
 import { MapPin, ArrowLeft } from 'lucide-react';
@@ -44,9 +45,14 @@ const RegionPage = () => {
       <div className={`bg-gradient-to-r ${theme.primary} py-12 relative overflow-hidden`}>
         <div className="absolute inset-0 opacity-20 bg-[url('https://source.unsplash.com/random/1000x600/?india,pattern')] bg-center bg-no-repeat bg-cover mix-blend-overlay"></div>
         <div className="max-w-7xl mx-auto px-6 relative z-10">
-          <Link to="/regions" className="inline-flex items-center gap-2 text-white/80 hover:text-white mb-6 transition-colors">
-            <ArrowLeft className="w-4 h-4" /> Back to All Regions
-          </Link>
+          <div className="flex justify-between items-center">
+            <Link to="/regions" className="inline-flex items-center gap-2 text-white/80 hover:text-white mb-6 transition-colors">
+              <ArrowLeft className="w-4 h-4" /> Back to All Regions
+            </Link>
+            <Link to="/states" className="inline-flex items-center gap-2 text-white/80 hover:text-white mb-6 transition-colors text-sm">
+              View All States
+            </Link>
+          </div>
           <h1 className="text-4xl md:text-6xl font-bold text-white mb-4">{decodedRegion.replace(' India', '')}</h1>
           <p className="text-white/80 max-w-2xl text-lg">{description}</p>
           
@@ -75,6 +81,7 @@ const RegionPage = () => {
         {states.length === 0 && (
           <div className="text-center py-12">
             <h3 className="text-xl text-gray-600 dark:text-gray-400">No states found in this region.</h3>
+            <Link to="/states" className="mt-4 inline-block neo-button">View All States</Link>
           </div>
         )}
       </div>

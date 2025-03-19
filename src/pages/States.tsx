@@ -4,13 +4,14 @@ import { motion } from 'framer-motion';
 import { states } from '../data/states';
 import StateCard from '../components/StateCard';
 import PageHeader from '../components/PageHeader';
-import { MapPin, Filter } from 'lucide-react';
+import { MapPin, Filter, ChevronDown, ChevronUp } from 'lucide-react';
 
 const States = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [filteredStates, setFilteredStates] = useState(states);
   const [selectedRegion, setSelectedRegion] = useState<string | null>(null);
   const [isFilterOpen, setIsFilterOpen] = useState(false);
+  const [isFilterExpanded, setIsFilterExpanded] = useState(true);
 
   useEffect(() => {
     // Apply both search and region filters
@@ -29,18 +30,22 @@ const States = () => {
 
   const handleRegionChange = (region: string | null) => {
     setSelectedRegion(region);
-    setIsFilterOpen(false); // Close the filter after selection
+    setIsFilterOpen(false); // Close the filter after selection on mobile
   };
 
   const clearFilters = () => {
     setSearchTerm('');
     setSelectedRegion(null);
     setFilteredStates(states); // Reset to all states
-    setIsFilterOpen(false); // Close the filter after clearing
+    setIsFilterOpen(false); // Close the filter after clearing on mobile
   };
 
   const toggleFilter = () => {
     setIsFilterOpen(!isFilterOpen);
+  };
+
+  const toggleFilterExpand = () => {
+    setIsFilterExpanded(!isFilterExpanded);
   };
 
   const regions = [...new Set(states.flatMap(state => state.tags))];
@@ -52,58 +57,76 @@ const States = () => {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: 10 }}
     >
-      <PageHeader title="Explore Indian States" description="Discover the diverse tapestry of India, state by state." />
+      <PageHeader title="View All Indian States" description="Discover the diverse tapestry of India, state by state." />
 
       {/* Search and Filter Bar */}
-      <div className="flex flex-col md:flex-row items-center justify-between gap-4 px-6 py-3">
-        <div className="flex items-center gap-2 w-full md:w-auto">
-          <MapPin className="w-5 h-5 text-gray-500 dark:text-gray-400" />
-          <input
-            type="text"
-            placeholder="Search for a state..."
-            className="neo-input w-full"
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
+      <div className="px-6 py-3">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-4 w-full">
+          <div className="flex items-center gap-2 w-full md:w-auto">
+            <MapPin className="w-5 h-5 text-gray-500 dark:text-gray-400" />
+            <input
+              type="text"
+              placeholder="Search for a state..."
+              className="neo-input w-full"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
+          </div>
+
+          {/* Filter Button - Visible on smaller screens */}
+          <button
+            onClick={toggleFilter}
+            className="neo-button flex items-center gap-2 md:hidden"
+          >
+            <Filter className="w-5 h-5" />
+            Filter
+          </button>
+
+          {/* Filter Expand/Collapse Toggle - Visible on larger screens */}
+          <button
+            onClick={toggleFilterExpand}
+            className="hidden md:flex items-center gap-2 text-gray-700 dark:text-gray-300 hover:text-violet-600 dark:hover:text-violet-400"
+          >
+            <span>Filters</span>
+            {isFilterExpanded ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+          </button>
         </div>
 
-        {/* Filter Button - Visible on smaller screens */}
-        <button
-          onClick={toggleFilter}
-          className="neo-button flex items-center gap-2 md:hidden"
-        >
-          <Filter className="w-5 h-5" />
-          Filter
-        </button>
-
-        {/* Filter Dropdown - Hidden on smaller screens, always visible on larger screens */}
+        {/* Expandable/Collapsible Filter Section */}
         <motion.div
-          className={`md:flex flex-wrap gap-2 items-center justify-end w-full md:w-auto ${isFilterOpen ? 'flex' : 'hidden md:flex'}`}
+          className={`md:mt-4 ${isFilterOpen ? 'flex' : 'hidden'} ${isFilterExpanded ? 'md:flex' : 'md:hidden'} flex-wrap gap-2 items-center w-full`}
           initial={{ opacity: 0, height: 0 }}
-          animate={{ opacity: 1, height: 'auto' }}
-          exit={{ opacity: 0, height: 0 }}
+          animate={{ 
+            opacity: (isFilterOpen || isFilterExpanded) ? 1 : 0,
+            height: (isFilterOpen || isFilterExpanded) ? 'auto' : 0
+          }}
           transition={{ duration: 0.3, ease: "easeInOut" }}
         >
-          <button
-            onClick={() => handleRegionChange(null)}
-            className={`neo-button text-sm ${selectedRegion === null ? 'opacity-50' : ''}`}
-          >
-            All Regions
-          </button>
-          {regions.map((region) => (
-            <button
-              key={region}
-              onClick={() => handleRegionChange(region)}
-              className={`neo-button text-sm ${selectedRegion === region ? 'opacity-50' : ''}`}
-            >
-              {region.split(' ').slice(0, 2).join(' ')}
-            </button>
-          ))}
-          {selectedRegion && (
-            <button onClick={clearFilters} className="text-red-500 text-sm">
-              Clear Filters
-            </button>
-          )}
+          <div className="p-4 neo-panel w-full">
+            <div className="flex flex-wrap gap-2 items-center">
+              <span className="text-sm font-medium mr-2">Region:</span>
+              <button
+                onClick={() => handleRegionChange(null)}
+                className={`neo-button text-sm ${selectedRegion === null ? 'opacity-50' : ''}`}
+              >
+                All Regions
+              </button>
+              {regions.map((region) => (
+                <button
+                  key={region}
+                  onClick={() => handleRegionChange(region)}
+                  className={`neo-button text-sm ${selectedRegion === region ? 'opacity-50' : ''}`}
+                >
+                  {region.split(' ').slice(0, 2).join(' ')}
+                </button>
+              ))}
+              {selectedRegion && (
+                <button onClick={clearFilters} className="text-red-500 text-sm ml-auto">
+                  Clear Filters
+                </button>
+              )}
+            </div>
+          </div>
         </motion.div>
       </div>
 
@@ -119,6 +142,13 @@ const States = () => {
             path={state.path}
           />
         ))}
+        
+        {filteredStates.length === 0 && (
+          <div className="col-span-full text-center py-12">
+            <h3 className="text-xl text-gray-600 dark:text-gray-400">No states found matching your criteria.</h3>
+            <button onClick={clearFilters} className="mt-4 neo-button">Clear Filters</button>
+          </div>
+        )}
       </div>
     </motion.div>
   );

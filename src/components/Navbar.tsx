@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { Menu, Search, X, User } from 'lucide-react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
@@ -6,10 +5,9 @@ import { states } from '../data/states';
 import { motion } from 'framer-motion';
 import ThemeToggle from './ThemeToggle';
 
-// Updated nav items to include Regions
 const navItems = [
-  { path: '/states', label: 'States' },
-  { path: '/regions', label: 'Regions' },
+  { path: '/states', label: 'View States' },
+  { path: '/regions', label: 'Explore by Region' },
   { path: '/culture', label: 'Culture' },
   { path: '/festivals', label: 'Festivals' },
   { path: '/food', label: 'Food' },
@@ -62,7 +60,7 @@ const Navbar = () => {
               </h1>
             </Link>
 
-            <div className="hidden md:flex items-center space-x-12">
+            <div className="hidden md:flex items-center space-x-8">
               {navItems.map((item) => (
                 <Link
                   key={item.path}
@@ -106,7 +104,6 @@ const Navbar = () => {
           </div>
         </div>
 
-        {/* Mobile Menu */}
         <motion.div
           initial={false}
           animate={isMobileMenuOpen ? { height: 'auto', opacity: 1 } : { height: 0, opacity: 0 }}
@@ -131,7 +128,6 @@ const Navbar = () => {
         </motion.div>
       </motion.nav>
 
-      {/* Search Modal */}
       {isSearchOpen && (
         <div className="fixed inset-0 dark:bg-black/90 bg-white/90 backdrop-blur-sm z-50 animate-fade-in">
           <div className="max-w-3xl mx-auto pt-32 px-4">
