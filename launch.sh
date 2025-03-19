@@ -57,16 +57,15 @@ chmod +x launch.command
 
 echo -e "\n${CYAN}=== Mystic India Application Information ===${NC}"
 echo -e "${GREEN}• Theme:${NC} Light/Dark mode toggle available in the top navigation"
-echo -e "${GREEN}• Pages:${NC} Home, States, Culture, Festivals, Food, Regions"
+echo -e "${GREEN}• Pages:${NC} Home, States, Culture, Festivals, Food"
 echo -e "${GREEN}• Features:${NC} Interactive UI, Responsive Design, Region Filtering"
 echo -e "${YELLOW}• Tip:${NC} For best experience, view in a modern browser with good internet connection\n"
 
-# Check for PORT environment variable or use 5173 as default
-PORT=${PORT:-5173}
+# Check for PORT environment variable or use 8080 as default
+PORT=${PORT:-8080}
 
 echo -e "${YELLOW}🚀 Starting the application...${NC}"
 echo -e "${CYAN}The application will be available at: ${GREEN}http://localhost:${PORT}${NC}\n"
 
 # Start the development server with improved output
-npm run dev
-
+npm run dev -- --host

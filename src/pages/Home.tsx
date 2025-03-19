@@ -1,3 +1,4 @@
+
 import { MapPin, Utensils, Landmark, PartyPopper, ArrowRight, Globe, BookOpen, Image, Star } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
@@ -179,72 +180,6 @@ function Home() {
                   </div>
                   <h3 className="text-xl font-semibold mb-3 text-light-text dark:text-white">{item.title}</h3>
                   <p className="text-light-muted dark:text-gray-400">{item.description}</p>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Explore by Region */}
-        <section className="py-20 bg-light-bg dark:bg-gray-900">
-          <div className="max-w-7xl mx-auto px-4">
-            <div className="text-center mb-16">
-              <motion.h2 
-                className="text-4xl md:text-5xl font-bold mb-4 text-light-text dark:text-white"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5 }}
-              >
-                Explore by Region
-              </motion.h2>
-              <motion.p 
-                className="text-xl text-light-muted dark:text-gray-300 max-w-3xl mx-auto"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.1 }}
-              >
-                Discover the unique charm of each region of India
-              </motion.p>
-            </div>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {[
-                { name: "North India", states: categorizedStates.north, image: "https://images.unsplash.com/photo-1548013146-72479768bada" },
-                { name: "South India", states: categorizedStates.south, image: "https://images.unsplash.com/photo-1602153508753-4de4f0be3093" },
-                { name: "East India", states: categorizedStates.east, image: "https://images.unsplash.com/photo-1558431382-27e303142255" },
-                { name: "West India", states: categorizedStates.west, image: "https://images.unsplash.com/photo-1586183189334-1abd0f9c5de3" },
-                { name: "Central India", states: categorizedStates.central, image: "https://images.unsplash.com/photo-1524492412937-b28074a5d7da" },
-                { name: "Northeast India", states: categorizedStates.northeast, image: "https://images.unsplash.com/photo-1605462863863-10d9e47e15ee" },
-              ].map((region, index) => (
-                <motion.div
-                  key={index}
-                  className="rounded-xl overflow-hidden relative group"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-100px" }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  whileHover={{ y: -5 }}
-                >
-                  <div className="h-64 overflow-hidden">
-                    <img 
-                      src={region.image} 
-                      alt={region.name} 
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-70"></div>
-                  </div>
-                  <div className="absolute bottom-0 left-0 right-0 p-6">
-                    <h3 className="text-2xl font-bold text-white mb-2">{region.name}</h3>
-                    <p className="text-gray-200 mb-3">{region.states.length} States</p>
-                    <Link 
-                      to="/states" 
-                      className="text-white bg-violet-600/80 hover:bg-violet-600 px-4 py-2 rounded-lg inline-flex items-center text-sm font-medium transition-colors"
-                    >
-                      Explore <ArrowRight className="w-4 h-4 ml-1" />
-                    </Link>
-                  </div>
                 </motion.div>
               ))}
             </div>

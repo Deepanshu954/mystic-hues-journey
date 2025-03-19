@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react';
 import { Menu, Search, X, User } from 'lucide-react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
@@ -7,7 +8,6 @@ import ThemeToggle from './ThemeToggle';
 
 const navItems = [
   { path: '/states', label: 'View States' },
-  { path: '/regions', label: 'Explore by Region' },
   { path: '/culture', label: 'Culture' },
   { path: '/festivals', label: 'Festivals' },
   { path: '/food', label: 'Food' },

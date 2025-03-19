@@ -13,7 +13,7 @@ const States = () => {
   const [filteredStates, setFilteredStates] = useState(states);
   const [selectedRegion, setSelectedRegion] = useState<string | null>(null);
   const [isFilterOpen, setIsFilterOpen] = useState(false);
-  const [isFilterExpanded, setIsFilterExpanded] = useState(true);
+  const [isFilterExpanded, setIsFilterExpanded] = useState(false); // Changed to false by default
 
   // Check if a region was passed from RegionPage
   useEffect(() => {
@@ -21,6 +21,8 @@ const States = () => {
       setSelectedRegion(location.state.selectedRegion);
       // Open filter on mobile when coming from region page
       setIsFilterOpen(true);
+      // Also expand filter on desktop when coming from region page
+      setIsFilterExpanded(true);
     }
   }, [location.state]);
 

@@ -9,3 +9,4 @@ cd "$DIR"
 
 # Run the launch script
 bash ./launch.sh
+
