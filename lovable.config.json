@@ -1,0 +1,11 @@
+
+{
+  "name": "Mystic India - Cultural Journey",
+  "version": "1.0.0",
+  "description": "Discover the cultural heritage of India - from festivals to food, traditions to landmarks.",
+  "theme": {
+    "primaryColor": "#FF9933",
+    "secondaryColor": "#8B5CF6",
+    "darkMode": true
+  }
+}

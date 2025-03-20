@@ -4,7 +4,6 @@ import react from '@vitejs/plugin-react';
 import path from 'path';
 import { componentTagger } from 'lovable-tagger';
 
-// https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
   plugins: [
     react(),
@@ -15,7 +14,7 @@ export default defineConfig(({ mode }) => ({
   },
   server: {
     port: 8080,
-    host: true, // Expose on all network interfaces
+    host: true,
     strictPort: true,
     open: true,
   },
@@ -23,5 +22,10 @@ export default defineConfig(({ mode }) => ({
     alias: {
       "@": path.resolve(__dirname, "./src"),
     },
+  },
+  build: {
+    outDir: 'dist',
+    sourcemap: true,
+    minify: 'terser',
   }
 }));
