@@ -18,6 +18,9 @@ if (savedTheme === 'dark' || (!savedTheme && prefersDarkMode)) {
   document.documentElement.classList.add('light');
 }
 
+// Performance optimization
+const startTime = performance.now();
+
 const rootElement = document.getElementById('root');
 if (!rootElement) throw new Error('Root element not found');
 
@@ -28,3 +31,9 @@ createRoot(rootElement).render(
     </BrowserRouter>
   </StrictMode>
 );
+
+// Log application startup performance
+window.addEventListener('load', () => {
+  const loadTime = performance.now() - startTime;
+  console.log(`Application loaded in ${loadTime.toFixed(2)}ms`);
+});

@@ -5,7 +5,11 @@
   "description": "Discover the cultural heritage of India - from festivals to food, traditions to landmarks.",
   "theme": {
     "primaryColor": "#FF9933",
-    "secondaryColor": "#8B5CF6",
+    "secondaryColor": "#5B00FF",
     "darkMode": true
+  },
+  "buildSettings": {
+    "performance": true,
+    "imageOptimization": true
   }
 }

@@ -1,0 +1,10 @@
+
+The following abstract background images should be placed in this directory:
+
+1. abstract-light.jpg - A high-quality light background for light mode
+   Suggestion: A subtle, light-colored abstract pattern with soft warm tones
+   
+2. abstract-dark.jpg - A high-quality dark background for dark mode
+   Suggestion: A deep, dark abstract pattern with subtle indigo/violet accents
+
+These images will be used as the background for the application in light and dark modes.

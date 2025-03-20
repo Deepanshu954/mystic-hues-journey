@@ -27,5 +27,18 @@ export default defineConfig(({ mode }) => ({
     outDir: 'dist',
     sourcemap: true,
     minify: 'terser',
+    chunkSizeWarningLimit: 1000,
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          vendor: ['react', 'react-dom', 'react-router-dom', 'framer-motion'],
+          ui: ['lucide-react']
+        }
+      }
+    }
+  },
+  preview: {
+    port: 8080,
+    host: true,
   }
 }));
