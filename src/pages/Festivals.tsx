@@ -48,7 +48,6 @@ function Festivals() {
               <motion.div
                 key={festival.id}
                 whileHover={{ scale: 1.03 }}
-                transition={{ duration: 0.3 }}
                 className="dark:bg-gray-800/80 light:bg-white rounded-xl overflow-hidden shadow-lg dark:border dark:border-violet-500/10 light:border-saffron-300/30"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
