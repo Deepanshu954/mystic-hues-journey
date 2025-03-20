@@ -2,7 +2,6 @@
 import { motion } from 'framer-motion';
 import PageTransition from '../components/PageTransition';
 import { festivalsData } from '../data/festivals';
-import PageHeader from '../components/PageHeader';
 import { useEffect } from 'react';
 
 function Festivals() {
