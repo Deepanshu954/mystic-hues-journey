@@ -17,8 +17,9 @@ export const useTheme = () => {
 };
 
 export const ThemeProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  // Check if user has a theme preference saved
   const [isDarkMode, setIsDarkMode] = useState(() => {
+    if (typeof window === 'undefined') return false;
+    
     const savedTheme = localStorage.getItem('theme');
     // Return true if saved theme is dark, or if no saved theme and browser prefers dark
     return savedTheme === 'dark' || 

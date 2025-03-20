@@ -15,7 +15,8 @@ export default defineConfig(({ mode }) => ({
   },
   server: {
     port: 8080,
-    strictPort: false,
+    host: true, // Expose on all network interfaces
+    strictPort: true,
     open: true,
   },
   resolve: {

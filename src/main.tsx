@@ -12,11 +12,16 @@ const savedTheme = localStorage.getItem('theme');
 // Set initial theme
 if (savedTheme === 'dark' || (!savedTheme && prefersDarkMode)) {
   document.documentElement.classList.add('dark');
+  document.documentElement.classList.remove('light');
 } else {
   document.documentElement.classList.remove('dark');
+  document.documentElement.classList.add('light');
 }
 
-createRoot(document.getElementById('root')!).render(
+const rootElement = document.getElementById('root');
+if (!rootElement) throw new Error('Root element not found');
+
+createRoot(rootElement).render(
   <StrictMode>
     <BrowserRouter>
       <App />

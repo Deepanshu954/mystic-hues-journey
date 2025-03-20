@@ -2,18 +2,9 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { Facebook, Twitter, Instagram, Youtube, Heart, MapPin } from 'lucide-react';
+import { Facebook, Twitter, Instagram, Youtube, Heart } from 'lucide-react';
 
 const Footer: React.FC = () => {
-  const regionLinks = [
-    { name: 'North India', path: '/states' },
-    { name: 'South India', path: '/states' },
-    { name: 'East India', path: '/states' },
-    { name: 'West India', path: '/states' },
-    { name: 'Central India', path: '/states' },
-    { name: 'Northeast India', path: '/states' },
-  ];
-  
   const footerLinks = [
     {
       title: 'Explore',
@@ -23,10 +14,6 @@ const Footer: React.FC = () => {
         { name: 'Festivals', path: '/festivals' },
         { name: 'Food', path: '/food' },
       ],
-    },
-    {
-      title: 'Regions',
-      links: regionLinks,
     },
     {
       title: 'Info',
@@ -93,7 +80,6 @@ const Footer: React.FC = () => {
                       to={link.path}
                       className="text-light-muted dark:text-gray-400 hover:text-violet-600 dark:hover:text-violet-400 transition-colors flex items-center gap-1"
                     >
-                      {section.title === 'Regions' && <MapPin className="w-3 h-3" />}
                       {link.name}
                     </Link>
                   </li>

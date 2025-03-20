@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useLocation } from 'react-router-dom';
@@ -13,21 +12,17 @@ const States = () => {
   const [filteredStates, setFilteredStates] = useState(states);
   const [selectedRegion, setSelectedRegion] = useState<string | null>(null);
   const [isFilterOpen, setIsFilterOpen] = useState(false);
-  const [isFilterExpanded, setIsFilterExpanded] = useState(false); // Changed to false by default
+  const [isFilterExpanded, setIsFilterExpanded] = useState(false);
 
-  // Check if a region was passed from RegionPage
   useEffect(() => {
     if (location.state && location.state.selectedRegion) {
       setSelectedRegion(location.state.selectedRegion);
-      // Open filter on mobile when coming from region page
-      setIsFilterOpen(true);
-      // Also expand filter on desktop when coming from region page
-      setIsFilterExpanded(true);
+      setIsFilterOpen(false);
+      setIsFilterExpanded(false);
     }
   }, [location.state]);
 
   useEffect(() => {
-    // Apply both search and region filters
     let results = states.filter(state =>
       state.name.toLowerCase().includes(searchTerm.toLowerCase())
     );
@@ -43,14 +38,14 @@ const States = () => {
 
   const handleRegionChange = (region: string | null) => {
     setSelectedRegion(region);
-    setIsFilterOpen(false); // Close the filter after selection on mobile
+    setIsFilterOpen(false);
   };
 
   const clearFilters = () => {
     setSearchTerm('');
     setSelectedRegion(null);
-    setFilteredStates(states); // Reset to all states
-    setIsFilterOpen(false); // Close the filter after clearing on mobile
+    setFilteredStates(states);
+    setIsFilterOpen(false);
   };
 
   const toggleFilter = () => {
@@ -72,7 +67,6 @@ const States = () => {
     >
       <PageHeader title="View All Indian States" description="Discover the diverse tapestry of India, state by state." />
 
-      {/* Search and Filter Bar */}
       <div className="px-6 py-3">
         <div className="flex flex-col md:flex-row items-center justify-between gap-4 w-full">
           <div className="flex items-center gap-2 w-full md:w-auto">
@@ -86,7 +80,6 @@ const States = () => {
             />
           </div>
 
-          {/* Filter Button - Visible on smaller screens */}
           <button
             onClick={toggleFilter}
             className="neo-button flex items-center gap-2 md:hidden"
@@ -95,7 +88,6 @@ const States = () => {
             Filter
           </button>
 
-          {/* Filter Expand/Collapse Toggle - Visible on larger screens */}
           <button
             onClick={toggleFilterExpand}
             className="hidden md:flex items-center gap-2 text-gray-700 dark:text-gray-300 hover:text-saffron-500 dark:hover:text-violet-400"
@@ -105,7 +97,6 @@ const States = () => {
           </button>
         </div>
 
-        {/* Expandable/Collapsible Filter Section */}
         <motion.div
           className={`md:mt-4 ${isFilterOpen ? 'flex' : 'hidden'} ${isFilterExpanded ? 'md:flex' : 'md:hidden'} flex-wrap gap-2 items-center w-full`}
           initial={{ opacity: 0, height: 0 }}
@@ -143,7 +134,6 @@ const States = () => {
         </motion.div>
       </div>
 
-      {/* State Cards Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
         {filteredStates.map((state) => (
           <StateCard
