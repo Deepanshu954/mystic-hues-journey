@@ -236,6 +236,14 @@ body {
   @apply bg-light-bg dark:bg-neo-black text-light-text dark:text-white font-sans overflow-x-hidden;
 }
 
+/* Light mode background image */
+.light body {
+  background-image: url('/lovable-uploads/080bf314-8d63-40d5-804f-2340cca15b5a.png');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
 /* 3D Card Effect */
 .card-3d {
   transform-style: preserve-3d;
