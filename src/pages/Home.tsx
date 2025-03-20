@@ -14,16 +14,6 @@ import { states } from '../data/states';
 // Show only 3 featured states on the home page
 const featuredStates = states.slice(0, 3);
 
-// Group states by category for rendering
-const categorizedStates = {
-  north: states.filter(state => state.tags.includes('North India')),
-  south: states.filter(state => state.tags.includes('South India')),
-  east: states.filter(state => state.tags.includes('East India')),
-  west: states.filter(state => state.tags.includes('West India')),
-  central: states.filter(state => state.tags.includes('Central India')),
-  northeast: states.filter(state => state.tags.includes('Northeast India')),
-};
-
 function Home() {
   return (
     <PageTransition>
