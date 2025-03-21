@@ -72,8 +72,8 @@ function Home() {
         <Newsletter />
         
         {/* Quick Links */}
-        <section className="py-12 bg-gradient-to-b from-transparent to-mystic-50/50 dark:to-indigo-950/20">
-          <div className="container mx-auto container-padding">
+        <section className="py-12 bg-gradient-to-b from-transparent to-neo-gray-50/50 dark:to-neo-violet/10">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex flex-wrap justify-center gap-6">
               <motion.div
                 initial={{ opacity: 0, y: 10 }}
@@ -81,7 +81,7 @@ function Home() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.4 }}
               >
-                <Link to="/culture" className="mystic-button">Explore Culture</Link>
+                <Link to="/culture" className="neo-button">Explore Culture</Link>
               </motion.div>
               
               <motion.div
@@ -90,7 +90,7 @@ function Home() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: 0.1 }}
               >
-                <Link to="/food" className="mystic-button">Discover Cuisine</Link>
+                <Link to="/food" className="neo-button">Discover Cuisine</Link>
               </motion.div>
               
               <motion.div
@@ -99,7 +99,7 @@ function Home() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: 0.2 }}
               >
-                <Link to="/festivals" className="mystic-button">Experience Festivals</Link>
+                <Link to="/festivals" className="neo-button">Experience Festivals</Link>
               </motion.div>
             </div>
           </div>

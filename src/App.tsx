@@ -45,7 +45,7 @@ function App() {
 
   return (
     <ThemeProvider>
-      <div className="min-h-screen bg-background-default dark:bg-background-dark relative overflow-hidden">
+      <div className="min-h-screen relative overflow-hidden">
         <ScrollToTop />
         <Navbar />
         <main>

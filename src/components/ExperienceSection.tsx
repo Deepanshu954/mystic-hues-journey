@@ -13,18 +13,18 @@ interface ExperienceCardProps {
 const ExperienceCard: React.FC<ExperienceCardProps> = ({ icon: Icon, title, description, delay }) => {
   return (
     <motion.div 
-      className="mystic-card p-8 text-center h-full flex flex-col items-center"
+      className="neo-card p-8 text-center h-full flex flex-col items-center"
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-100px" }}
       transition={{ duration: 0.6, delay }}
       whileHover={{ y: -5 }}
     >
-      <div className="mb-6 p-4 rounded-full bg-mystic-50 dark:bg-indigo-900/30">
-        <Icon className="w-10 h-10 text-mystic-500 dark:text-indigo-400" />
+      <div className="mb-6 p-4 rounded-full bg-neo-violet/10 dark:bg-neo-violet/20">
+        <Icon className="w-10 h-10 text-neo-violet" />
       </div>
-      <h3 className="text-xl font-serif font-semibold mb-3">{title}</h3>
-      <p className="text-text-secondary dark:text-text-light/70 flex-grow">{description}</p>
+      <h3 className="text-xl font-medium mb-3">{title}</h3>
+      <p className="text-light-muted dark:text-dark-muted flex-grow">{description}</p>
     </motion.div>
   );
 };
@@ -64,12 +64,12 @@ const ExperienceSection: React.FC = () => {
   ];
 
   return (
-    <section className="section-padding bg-background-light dark:bg-background-dark/80 relative overflow-hidden">
+    <section className="py-16 md:py-24 relative overflow-hidden">
       {/* Decorative elements */}
-      <div className="absolute top-0 right-0 w-1/3 h-1/3 bg-gradient-radial from-mystic-500/10 to-transparent opacity-60"></div>
-      <div className="absolute bottom-0 left-0 w-1/3 h-1/3 bg-gradient-radial from-indigo-500/10 to-transparent opacity-60"></div>
+      <div className="absolute top-0 right-0 w-1/3 h-1/3 bg-gradient-radial from-neo-violet/5 to-transparent opacity-60"></div>
+      <div className="absolute bottom-0 left-0 w-1/3 h-1/3 bg-gradient-radial from-neo-blue/5 to-transparent opacity-60"></div>
       
-      <div className="container mx-auto container-padding">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div 
           className="text-center mb-16"
           initial={{ opacity: 0, y: 20 }}
@@ -77,10 +77,10 @@ const ExperienceSection: React.FC = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-4xl md:text-5xl font-serif font-bold mb-6 gradient-heading">
+          <h2 className="text-4xl md:text-5xl font-bold mb-6 neo-gradient-text">
             Experience India
           </h2>
-          <p className="text-xl text-text-secondary dark:text-text-light/70 max-w-3xl mx-auto">
+          <p className="text-xl text-light-muted dark:text-dark-muted max-w-3xl mx-auto">
             Immerse yourself in the wonders of a subcontinent where every journey becomes a story
           </p>
         </motion.div>

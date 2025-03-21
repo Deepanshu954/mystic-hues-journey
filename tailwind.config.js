@@ -6,136 +6,126 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Primary palette
-        'mystic': {
-          50: '#FFF7E6',
-          100: '#FFE8BF',
-          200: '#FFD280',
-          300: '#FFBD40',
-          400: '#FFAD00',
-          500: '#FF9933', // Primary saffron
-          600: '#E6780D',
-          700: '#CC5800',
-          800: '#A34700',
-          900: '#7A3500',
+        // Modern color palette
+        'neo': {
+          'violet': '#8B5CF6',
+          'blue': '#3B82F6',
+          'teal': '#14B8A6',
+          'gray-50': '#F9FAFB',
+          'gray-100': '#F3F4F6',
+          'gray-200': '#E5E7EB',
+          'gray-300': '#D1D5DB',
+          'gray-400': '#9CA3AF',
+          'gray-500': '#6B7280',
+          'gray-600': '#4B5563',
+          'gray-700': '#374151',
+          'gray-800': '#1F2937',
+          'gray-900': '#111827',
+          'black': '#030712',
+          'dark': '#0F172A',
         },
-        // Accent palette
-        'indigo': {
-          50: '#EEE8FF',
-          100: '#D8CCFF',
-          200: '#B399FF',
-          300: '#8E66FF',
-          400: '#7233FF',
-          500: '#5B00FF',
-          600: '#4D00DB',
-          700: '#3800A3',
-          800: '#29007A',
-          900: '#1A0052',
+        'saffron': {
+          '50': '#FFF9E6',
+          '100': '#FFF0BF',
+          '200': '#FFE499',
+          '300': '#FFD266',
+          '400': '#FFC433',
+          '500': '#FF9933', // Primary saffron
+          '600': '#E67300',
+          '700': '#B35A00',
+          '800': '#804000',
+          '900': '#663300',
         },
-        // Background palette
-        'background': {
-          light: '#FFF9F1',
-          default: '#FFFFFF',
-          dark: '#0F172A',
+        'light': {
+          'background': '#F9FAFB',
+          'text': '#111827',
+          'muted': '#4B5563',
+          'border': '#E5E7EB',
         },
-        // Text palette
-        'text': {
-          primary: '#1E293B',
-          secondary: '#475569',
-          light: '#FFFFFF',
-          muted: '#64748B',
+        'dark': {
+          'background': '#0F172A',
+          'surface': '#1E293B',
+          'text': '#F3F4F6',
+          'muted': '#9CA3AF',
+          'border': '#374151',
         },
-      },
-      fontFamily: {
-        'sans': ['Poppins', 'Inter', 'ui-sans-serif', 'system-ui', '-apple-system'],
-        'serif': ['Playfair Display', 'Georgia', 'serif'],
-        'mono': ['JetBrains Mono', 'monospace'],
       },
       backgroundImage: {
-        'hero-pattern': "url('/lovable-uploads/hero-pattern.jpg')",
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
-        'abstract-light': "url('/lovable-uploads/abstract-light.jpg')",
-        'abstract-dark': "url('/lovable-uploads/abstract-dark.jpg')",
-        'mystic-glow': 'linear-gradient(to right, rgba(255, 153, 51, 0.3), rgba(91, 0, 255, 0.3))',
-      },
-      animation: {
-        'float': 'float 6s ease-in-out infinite',
-        'pulse-slow': 'pulse 6s ease-in-out infinite',
-        'shimmer': 'shimmer 2s linear infinite',
-        'slide-up': 'slideUp 0.8s ease-out forwards',
-        'slide-down': 'slideDown 0.8s ease-out forwards',
-        'fade-in': 'fadeIn 0.7s ease-out forwards',
-        'scale-in': 'scaleIn 0.5s ease-out forwards',
+        'neo-grid': 'linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px)',
+        'gradient-shine': 'linear-gradient(45deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.1) 50%, rgba(255,255,255,0) 100%)',
       },
       keyframes: {
-        float: {
-          '0%, 100%': { transform: 'translateY(0)' },
-          '50%': { transform: 'translateY(-20px)' },
-        },
         shimmer: {
           '0%': { backgroundPosition: '-500px 0' },
           '100%': { backgroundPosition: '500px 0' },
         },
-        slideUp: {
-          '0%': { transform: 'translateY(30px)', opacity: '0' },
-          '100%': { transform: 'translateY(0)', opacity: '1' },
-        },
-        slideDown: {
-          '0%': { transform: 'translateY(-30px)', opacity: '0' },
-          '100%': { transform: 'translateY(0)', opacity: '1' },
-        },
-        fadeIn: {
-          '0%': { opacity: '0' },
-          '100%': { opacity: '1' },
-        },
-        scaleIn: {
-          '0%': { transform: 'scale(0.9)', opacity: '0' },
-          '100%': { transform: 'scale(1)', opacity: '1' },
-        },
+      },
+      animation: {
+        shimmer: 'shimmer 10s linear infinite',
       },
       boxShadow: {
-        'mystic': '0 10px 25px -5px rgba(255, 153, 51, 0.2), 0 10px 10px -5px rgba(255, 153, 51, 0.1)',
-        'indigo': '0 10px 25px -5px rgba(91, 0, 255, 0.2), 0 10px 10px -5px rgba(91, 0, 255, 0.1)',
-        'glass': '0 8px 32px 0 rgba(31, 38, 135, 0.07)',
-        'neon': '0 0 10px rgba(255, 153, 51, 0.5), 0 0 20px rgba(255, 153, 51, 0.3)',
-        'neon-indigo': '0 0 10px rgba(91, 0, 255, 0.5), 0 0 20px rgba(91, 0, 255, 0.3)',
+        'neo': '0 10px 50px -12px rgba(0, 0, 0, 0.25)',
       },
-      transitionProperty: {
-        'height': 'height',
-        'spacing': 'margin, padding',
+      typography: {
+        DEFAULT: {
+          css: {
+            maxWidth: '65ch',
+          },
+        },
       },
     },
   },
   plugins: [
-    function ({ addUtilities }) {
+    function ({ addUtilities, addComponents }) {
       const newUtilities = {
-        '.text-gradient-mystic': {
-          background: 'linear-gradient(to right, #FF9933, #FFC266)',
+        '.text-gradient-neo': {
+          background: 'linear-gradient(to right, #8B5CF6, #6366F1)',
           '-webkit-background-clip': 'text',
           'color': 'transparent',
         },
-        '.text-gradient-indigo': {
-          background: 'linear-gradient(to right, #5B00FF, #8E66FF)',
-          '-webkit-background-clip': 'text',
-          'color': 'transparent',
-        },
-        '.glass-morphism': {
-          'background': 'rgba(255, 255, 255, 0.1)',
-          'backdrop-filter': 'blur(10px)',
-          'border': '1px solid rgba(255, 255, 255, 0.18)',
-          'border-radius': '16px',
-          'box-shadow': '0 8px 32px 0 rgba(31, 38, 135, 0.07)',
-        },
-        '.glass-morphism-dark': {
-          'background': 'rgba(15, 23, 42, 0.6)',
-          'backdrop-filter': 'blur(10px)',
-          'border': '1px solid rgba(255, 255, 255, 0.08)',
-          'border-radius': '16px',
-          'box-shadow': '0 8px 32px 0 rgba(0, 0, 0, 0.37)',
+        '.bg-shimmer': {
+          backgroundImage: 'linear-gradient(45deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.1) 50%, rgba(255,255,255,0) 100%)',
+          backgroundSize: '200% 100%',
+          animation: 'shimmer 10s infinite linear',
         },
       };
-      addUtilities(newUtilities, ['responsive', 'hover']);
+      
+      const newComponents = {
+        '.neo-card': {
+          '@apply bg-white dark:bg-dark-surface border border-light-border dark:border-dark-border rounded-xl shadow-sm transition-all duration-300': {},
+        },
+        '.neo-button': {
+          '@apply px-4 py-2 bg-neo-violet/10 dark:bg-neo-violet/20 text-neo-violet dark:text-white border border-neo-violet/20 dark:border-neo-violet/30 rounded-lg font-medium transition-all duration-300 hover:bg-neo-violet/20 dark:hover:bg-neo-violet/30': {},
+        },
+        '.neo-input': {
+          '@apply bg-light-background dark:bg-dark-surface border border-light-border dark:border-dark-border px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-neo-violet/30 dark:focus:ring-neo-violet/50 transition-all duration-300': {},
+        },
+        '.neo-panel': {
+          '@apply bg-white/10 dark:bg-dark-surface/40 backdrop-blur-sm border border-light-border/40 dark:border-dark-border/30 rounded-xl shadow-sm transition-all duration-300': {},
+        },
+        '.region-badge': {
+          '@apply bg-neo-violet/20 dark:bg-neo-violet/30 text-neo-violet dark:text-white text-xs font-medium px-2.5 py-1 rounded-full': {},
+        },
+        '.card-3d': {
+          perspective: '1000px',
+        },
+        '.card-3d-content': {
+          '@apply transition-all duration-300': {},
+          transform: 'translateZ(0px)',
+          transformStyle: 'preserve-3d',
+        },
+        '.neo-spinner': {
+          '@apply w-8 h-8 border-4 border-neo-gray-300 dark:border-neo-gray-700 border-t-neo-violet rounded-full animate-spin': {},
+        },
+        '.neo-gradient-text': {
+          '@apply text-transparent bg-clip-text bg-gradient-to-r from-neo-violet to-neo-blue': {},
+        },
+      };
+
+      addUtilities(newUtilities);
+      addComponents(newComponents);
     },
   ],
 };
