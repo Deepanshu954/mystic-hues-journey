@@ -1,46 +1,61 @@
 
 /**
- * This utility detects if the app is being loaded directly from a file:// URL
- * instead of being served through a proper development server.
+ * This utility detects when a user tries to open the HTML file directly in their browser
+ * using the file:// protocol instead of running the proper development server.
+ * 
+ * When detected, it displays a friendly error message with instructions on how to
+ * correctly run the application.
  */
 
-export const detectDirectFileLoad = () => {
-  // Check if we're running from a file:// URL
-  const isDirectFileLoad = window.location.protocol === 'file:';
-  
-  if (isDirectFileLoad) {
-    // If loaded directly as a file, show a custom error page
-    document.body.innerHTML = `
-      <div style="font-family: 'Poppins', sans-serif; max-width: 800px; margin: 50px auto; padding: 20px; background-color: #f8f0e5; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
-        <div style="text-align: center; margin-bottom: 20px;">
-          <h1 style="color: #e25822; font-family: 'Playfair Display', serif;">🕉️ Mystic India</h1>
-        </div>
+export const detectDirectFileLoad = (): boolean => {
+  // Check if using file:// protocol
+  if (window.location.protocol === 'file:') {
+    // Create error message container
+    const errorContainer = document.createElement('div');
+    errorContainer.style.fontFamily = 'system-ui, -apple-system, sans-serif';
+    errorContainer.style.maxWidth = '600px';
+    errorContainer.style.margin = '50px auto';
+    errorContainer.style.padding = '30px';
+    errorContainer.style.background = '#f8f0ff';
+    errorContainer.style.borderRadius = '12px';
+    errorContainer.style.boxShadow = '0 4px 20px rgba(102, 51, 153, 0.15)';
+    errorContainer.style.color = '#333';
+    errorContainer.style.lineHeight = '1.6';
+    
+    // Add content to the error message
+    errorContainer.innerHTML = `
+      <h1 style="color: #663399; margin-top: 0; font-size: 28px;">⚠️ Incorrect Launch Method</h1>
+      
+      <p style="font-size: 16px;">You've opened the HTML file directly in your browser, but this application needs to be run with its development server to function properly.</p>
+      
+      <h2 style="color: #663399; margin-top: 30px; font-size: 20px;">How to correctly launch the app:</h2>
+      
+      <div style="background: #f1e6ff; padding: 15px; border-radius: 8px; margin: 15px 0;">
+        <p style="margin: 0 0 10px 0;"><strong>Option 1:</strong> Use the provided startup script:</p>
+        <code style="display: block; background: #333; color: #fff; padding: 10px; border-radius: 4px; overflow-x: auto; margin-bottom: 10px;">
+          # On Windows: double-click the launcher file<br>
+          # On macOS: double-click launch.command<br>
+          # On Linux: run ./launch.sh
+        </code>
         
-        <div style="background-color: #fff3dc; border-left: 4px solid #ff9933; padding: 15px; margin-bottom: 20px; border-radius: 4px;">
-          <h2 style="color: #e25822; margin-top: 0;">⚠️ Application Launch Error</h2>
-          <p>You're trying to open this application directly as an HTML file, but it needs to be served through a development server.</p>
-        </div>
-        
-        <h3 style="color: #3e2723;">How to launch the app correctly:</h3>
-        
-        <div style="background-color: #f5f5f5; padding: 15px; border-radius: 4px; font-family: monospace; margin-bottom: 20px;">
-          <p style="margin: 5px 0;"><strong>Option 1:</strong> In your terminal, navigate to the project folder and run:</p>
-          <pre style="background-color: #2b2b2b; color: #e6e6e6; padding: 10px; border-radius: 4px; overflow-x: auto;">node mystic.js</pre>
-          
-          <p style="margin: 15px 0 5px;"><strong>Option 2:</strong> Or use npm:</p>
-          <pre style="background-color: #2b2b2b; color: #e6e6e6; padding: 10px; border-radius: 4px; overflow-x: auto;">npm start</pre>
-          <pre style="background-color: #2b2b2b; color: #e6e6e6; padding: 10px; border-radius: 4px; overflow-x: auto;">npm run dev</pre>
-        </div>
-        
-        <p>These commands will install any required dependencies and start a local development server.</p>
-        <p>Once the server is running, the app will automatically open in your browser at <a href="http://localhost:8080" style="color: #e25822;">http://localhost:8080</a></p>
-        
-        <div style="background-color: #edf7ed; border-left: 4px solid #4caf50; padding: 15px; margin-top: 20px; border-radius: 4px;">
-          <h3 style="color: #1b5e20; margin-top: 0;">Need help?</h3>
-          <p>Refer to the README.md file in the project directory for more detailed instructions.</p>
-        </div>
+        <p style="margin: 15px 0 10px 0;"><strong>Option 2:</strong> Use npm commands in terminal/command prompt:</p>
+        <code style="display: block; background: #333; color: #fff; padding: 10px; border-radius: 4px; overflow-x: auto;">
+          # Navigate to the project directory<br>
+          cd path/to/project<br><br>
+          # Start the development server<br>
+          npm run dev<br>
+          # Or<br>
+          npm start
+        </code>
       </div>
+      
+      <p style="font-size: 16px;">After starting the server correctly, the app will automatically open in your browser at <strong>http://localhost:8080</strong></p>
     `;
+    
+    // Replace the entire body content with our error message
+    document.body.innerHTML = '';
+    document.body.appendChild(errorContainer);
+    
     return true;
   }
   
