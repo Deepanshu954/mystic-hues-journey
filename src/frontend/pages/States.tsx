@@ -62,7 +62,7 @@ const States = () => {
 
   return (
     <PageTransition>
-      <div
+      <motion.div
         className="page-transition"
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
@@ -156,7 +156,7 @@ const States = () => {
             </div>
           )}
         </div>
-      </div>
+      </motion.div>
     </PageTransition>
   );
 };

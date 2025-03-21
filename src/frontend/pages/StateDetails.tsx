@@ -108,13 +108,13 @@ const StateDetails = () => {
                   <div className="flex flex-col items-center bg-gray-700/50 p-4 rounded-lg">
                     <Users className="h-6 w-6 text-violet-400 mb-2" />
                     <span className="text-sm text-gray-400">Population</span>
-                    <span className="text-white font-medium">52.3M+</span>
+                    <span className="text-white font-medium">{stateData.population}</span>
                   </div>
                   
                   <div className="flex flex-col items-center bg-gray-700/50 p-4 rounded-lg">
                     <PenTool className="h-6 w-6 text-violet-400 mb-2" />
                     <span className="text-sm text-gray-400">Languages</span>
-                    <span className="text-white font-medium">{stateData.language?.[0] || 'Multiple'}</span>
+                    <span className="text-white font-medium">{stateData.tags.includes('Hindi') ? 'Hindi' : (stateData.tags.includes('Tamil') ? 'Tamil' : 'Multiple')}</span>
                   </div>
                   
                   <div className="flex flex-col items-center bg-gray-700/50 p-4 rounded-lg">
@@ -138,7 +138,7 @@ const StateDetails = () => {
                 </div>
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  {stateData.places.slice(0, 4).map((place, index) => (
+                  {stateData.places?.slice(0, 4).map((place, index) => (
                     <motion.div 
                       key={index}
                       className="group rounded-xl overflow-hidden relative hover:shadow-lg transition-all duration-300"
@@ -167,7 +167,7 @@ const StateDetails = () => {
                   ))}
                 </div>
                 
-                {stateData.places.length > 4 && (
+                {stateData.places && stateData.places.length > 4 && (
                   <div className="mt-6 text-center">
                     <button className="inline-flex items-center text-violet-400 hover:text-violet-300 transition-colors">
                       <span>View all {stateData.places.length} attractions</span>
@@ -195,22 +195,22 @@ const StateDetails = () => {
                 <div className="space-y-4">
                   <div className="bg-gray-700/50 p-4 rounded-lg">
                     <h3 className="font-medium text-violet-300 mb-1">Art Forms</h3>
-                    <p className="text-gray-300">{stateData.culture.art}</p>
+                    <p className="text-gray-300">{stateData.culture?.art || "Various traditional art forms"}</p>
                   </div>
                   
                   <div className="bg-gray-700/50 p-4 rounded-lg">
                     <h3 className="font-medium text-violet-300 mb-1">Traditional Dance</h3>
-                    <p className="text-gray-300">{stateData.culture.dance}</p>
+                    <p className="text-gray-300">{stateData.culture?.dance || "Traditional folk dances"}</p>
                   </div>
                   
                   <div className="bg-gray-700/50 p-4 rounded-lg">
                     <h3 className="font-medium text-violet-300 mb-1">Handicrafts</h3>
                     <div className="flex flex-wrap gap-2 mt-2">
-                      {stateData.culture.handicrafts.map((craft, index) => (
+                      {stateData.culture?.handicrafts?.map((craft, index) => (
                         <span key={index} className="px-2 py-1 bg-gray-600/50 text-gray-200 text-xs rounded-md">
                           {craft}
                         </span>
-                      ))}
+                      )) || <span className="text-gray-300">Traditional crafts</span>}
                     </div>
                   </div>
                 </div>
@@ -229,7 +229,7 @@ const StateDetails = () => {
                 </div>
                 
                 <div className="space-y-3">
-                  {stateData.culture.festivals.map((festival, index) => (
+                  {stateData.culture?.festivals?.map((festival, index) => (
                     <div 
                       key={index}
                       className="flex items-center p-3 bg-gray-700/50 rounded-lg hover:bg-gray-600/50 transition-colors"
@@ -242,7 +242,17 @@ const StateDetails = () => {
                         <p className="text-sm text-gray-400">Traditional celebration</p>
                       </div>
                     </div>
-                  ))}
+                  )) || (
+                    <div className="flex items-center p-3 bg-gray-700/50 rounded-lg">
+                      <div className="h-10 w-10 flex items-center justify-center bg-violet-500/20 rounded-full mr-3">
+                        <CalendarDays className="h-5 w-5 text-violet-400" />
+                      </div>
+                      <div>
+                        <h3 className="font-medium text-white">Local Festivals</h3>
+                        <p className="text-sm text-gray-400">Traditional celebrations</p>
+                      </div>
+                    </div>
+                  )}
                 </div>
                 
                 <div className="mt-4">
@@ -269,7 +279,7 @@ const StateDetails = () => {
                 </div>
                 
                 <div className="space-y-4">
-                  {stateData.cuisine.slice(0, 3).map((item, index) => (
+                  {stateData.cuisine?.slice(0, 3).map((item, index) => (
                     <div key={index} className="flex items-start">
                       <img 
                         src={item.image} 
@@ -281,7 +291,11 @@ const StateDetails = () => {
                         <p className="text-sm text-gray-400 line-clamp-2">{item.description}</p>
                       </div>
                     </div>
-                  ))}
+                  )) || (
+                    <div className="text-center text-gray-400">
+                      <p>Cuisine information coming soon</p>
+                    </div>
+                  )}
                 </div>
                 
                 <div className="mt-4">
