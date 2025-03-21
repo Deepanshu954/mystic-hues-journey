@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowLeft, Map, PenTool, Utensils, Users, Star, Camera, CalendarDays } from 'lucide-react';
+import { ArrowLeft, Map, PenTool, Utensils, Star, Camera, CalendarDays } from 'lucide-react';
 import { states } from '../../database/states';
 import PageTransition from '../components/PageTransition';
 
@@ -106,12 +106,6 @@ const StateDetails = () => {
                   </div>
                   
                   <div className="flex flex-col items-center bg-gray-700/50 p-4 rounded-lg">
-                    <Users className="h-6 w-6 text-violet-400 mb-2" />
-                    <span className="text-sm text-gray-400">Population</span>
-                    <span className="text-white font-medium">{stateData.population}</span>
-                  </div>
-                  
-                  <div className="flex flex-col items-center bg-gray-700/50 p-4 rounded-lg">
                     <PenTool className="h-6 w-6 text-violet-400 mb-2" />
                     <span className="text-sm text-gray-400">Languages</span>
                     <span className="text-white font-medium">{stateData.tags.includes('Hindi') ? 'Hindi' : (stateData.tags.includes('Tamil') ? 'Tamil' : 'Multiple')}</span>
@@ -121,6 +115,12 @@ const StateDetails = () => {
                     <Utensils className="h-6 w-6 text-violet-400 mb-2" />
                     <span className="text-sm text-gray-400">Cuisine</span>
                     <span className="text-white font-medium">Traditional</span>
+                  </div>
+                  
+                  <div className="flex flex-col items-center bg-gray-700/50 p-4 rounded-lg">
+                    <Star className="h-6 w-6 text-violet-400 mb-2" />
+                    <span className="text-sm text-gray-400">Famous For</span>
+                    <span className="text-white font-medium">{stateData.famous}</span>
                   </div>
                 </div>
               </motion.div>
