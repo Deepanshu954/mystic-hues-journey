@@ -1,5 +1,5 @@
 
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import PageTransition from '../components/PageTransition';
@@ -11,9 +11,22 @@ import Newsletter from '../components/Newsletter';
 import Testimonials from '../components/Testimonials';
 import UpcomingEvents from '../components/UpcomingEvents';
 import { states } from '../data/states';
+import { StateType } from '../types/StateType';
 
 // Show only 3 featured states on the home page
-const featuredStates = states.slice(0, 3);
+const featuredStates = states.slice(0, 3).map(state => ({
+  name: state.name,
+  path: state.path,
+  image: state.image,
+  description: state.description,
+  region: state.tags.find(tag => tag.includes('India')) || 'India',
+  capital: state.capital,
+  language: state.culture?.festivals || ['Hindi'],
+  tags: state.tags,
+  cuisine: state.cuisine.map(item => item.name),
+  population: '1M+',
+  attractions: state.places.map(place => place.name)
+})) as StateType[];
 
 function Home() {
   // Preload key images for better performance

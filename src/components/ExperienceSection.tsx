@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { MapPin, Utensils, Landmark, PartyPopper, Users, Book, Camera } from 'lucide-react';
+import { MapPin, Utensils, Landmark, PartyPopper, Users, Book } from 'lucide-react';
 
 interface ExperienceCardProps {
   icon: React.ElementType;
